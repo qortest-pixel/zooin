@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 type Report = {
   id: number;
@@ -9,6 +10,7 @@ type Report = {
   category: string;
   date: string;
   tags: string[];
+  content?: string;
 };
 
 const CATEGORIES = ["전체", "전략", "분석", "자동화", "대화"];
@@ -230,14 +232,19 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
                     </button>
                   </div>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 mb-3">{selected.title}</h2>
-                <p className="text-gray-600 leading-relaxed mb-4">{selected.summary}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {selected.tags.map((tag) => (
                     <span key={tag} className="text-xs bg-gray-100 text-gray-500 rounded px-2 py-1">{tag}</span>
                   ))}
+                  <span className="text-xs text-gray-400 ml-auto">{selected.date}</span>
                 </div>
-                <p className="text-xs text-gray-400 mt-4">{selected.date}</p>
+                <div className="prose prose-sm prose-gray max-w-none overflow-y-auto max-h-[60vh]">
+                  {selected.content ? (
+                    <ReactMarkdown>{selected.content}</ReactMarkdown>
+                  ) : (
+                    <p className="text-gray-600 leading-relaxed">{selected.summary}</p>
+                  )}
+                </div>
               </>
             ) : (
               <>

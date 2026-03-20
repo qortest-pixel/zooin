@@ -13,64 +13,117 @@ type Report = {
 
 const CATEGORIES = ["전체", "전략", "분석", "자동화", "대화"];
 
-const CATEGORY_COLORS: Record<string, string> = {
-  전략: "bg-violet-500/20 text-violet-300 border-violet-500/30",
-  분석: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  자동화: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-  대화: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
+  전략: { bg: "bg-violet-100", text: "text-violet-700", dot: "bg-violet-400" },
+  분석: { bg: "bg-blue-100", text: "text-blue-700", dot: "bg-blue-400" },
+  자동화: { bg: "bg-emerald-100", text: "text-emerald-700", dot: "bg-emerald-400" },
+  대화: { bg: "bg-amber-100", text: "text-amber-700", dot: "bg-amber-400" },
 };
 
-export default function ReportsClient({ reports }: { reports: Report[] }) {
+const MODELS = [
+  { name: "Sonnet", color: "bg-blue-500", used: 62, total: 100 },
+  { name: "Opus", color: "bg-violet-500", used: 28, total: 100 },
+];
+
+export default function ReportsClient({ reports: initialReports }: { reports: Report[] }) {
   const [activeTab, setActiveTab] = useState("전체");
+  const [reports, setReports] = useState(initialReports);
+  const [selected, setSelected] = useState<Report | null>(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editData, setEditData] = useState<Report | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<{ role: string; text: string }[]>([
+    { role: "ai", text: "안녕하세요 대표님! zooin 사이트 관련해서 수정하고 싶은 게 있으면 말씀해주세요." },
+  ]);
+  const [chatInput, setChatInput] = useState("");
 
-  const filtered =
-    activeTab === "전체"
-      ? reports
-      : reports.filter((r) => r.category === activeTab);
-
+  const filtered = activeTab === "전체" ? reports : reports.filter((r) => r.category === activeTab);
   const countFor = (cat: string) =>
-    cat === "전체"
-      ? reports.length
-      : reports.filter((r) => r.category === cat).length;
+    cat === "전체" ? reports.length : reports.filter((r) => r.category === cat).length;
+
+  function openDetail(r: Report) {
+    setSelected(r);
+    setEditData({ ...r });
+    setEditMode(false);
+  }
+
+  function saveEdit() {
+    if (!editData) return;
+    setReports((prev) => prev.map((r) => (r.id === editData.id ? editData : r)));
+    setSelected(editData);
+    setEditMode(false);
+  }
+
+  function sendChat() {
+    if (!chatInput.trim()) return;
+    const userMsg = chatInput.trim();
+    setChatMessages((prev) => [...prev, { role: "user", text: userMsg }]);
+    setChatInput("");
+    setTimeout(() => {
+      setChatMessages((prev) => [
+        ...prev,
+        {
+          role: "ai",
+          text: "요청을 받았습니다. 현재 데모 모드라 실제 수정은 Mac mini의 OpenClaw와 연동 후 가능합니다. 곧 지원 예정이에요!",
+        },
+      ]);
+    }, 800);
+  }
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white font-sans">
+    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header */}
-      <header className="border-b border-white/10 px-6 py-5">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">
-              zooin <span className="text-white/40">Reports</span>
-            </h1>
-            <p className="text-sm text-white/40 mt-0.5">
-              전략 · 분석 · 자동화 · 대화
-            </p>
+      <header className="bg-white border-b border-gray-200 px-6 py-4 sticky top-0 z-10 shadow-sm">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-blue-500 rounded-lg" />
+            <div>
+              <h1 className="text-lg font-bold tracking-tight leading-none">zooin Reports</h1>
+              <p className="text-xs text-gray-400 mt-0.5">전략 · 분석 · 자동화 · 대화</p>
+            </div>
           </div>
-          <span className="text-xs text-white/30 bg-white/5 border border-white/10 rounded-full px-3 py-1">
-            {reports.length}개의 기록
-          </span>
+
+          {/* Model Usage */}
+          <div className="flex items-center gap-4">
+            {MODELS.map((m) => (
+              <div key={m.name} className="hidden sm:flex items-center gap-2">
+                <span className="text-xs text-gray-500">{m.name}</span>
+                <div className="w-20 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full ${m.color} rounded-full transition-all`}
+                    style={{ width: `${m.used}%` }}
+                  />
+                </div>
+                <span className="text-xs font-medium text-gray-600">{m.used}%</span>
+              </div>
+            ))}
+            <button
+              onClick={() => setChatOpen(true)}
+              className="flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+            >
+              <span>💬</span> AI 수정 요청
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Tabs */}
-      <div className="border-b border-white/10 px-6">
-        <div className="max-w-4xl mx-auto flex gap-1 overflow-x-auto">
+      <div className="bg-white border-b border-gray-200 px-6">
+        <div className="max-w-5xl mx-auto flex gap-0 overflow-x-auto">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`flex items-center gap-1.5 px-4 py-3 text-sm whitespace-nowrap border-b-2 transition-colors ${
+              className={`flex items-center gap-1.5 px-5 py-3.5 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
                 activeTab === cat
-                  ? "border-white text-white"
-                  : "border-transparent text-white/40 hover:text-white/70"
+                  ? "border-violet-600 text-violet-600"
+                  : "border-transparent text-gray-500 hover:text-gray-800"
               }`}
             >
               {cat}
               <span
-                className={`text-xs rounded-full px-1.5 py-0.5 ${
-                  activeTab === cat
-                    ? "bg-white/20 text-white"
-                    : "bg-white/5 text-white/30"
+                className={`text-xs rounded-full px-2 py-0.5 font-semibold ${
+                  activeTab === cat ? "bg-violet-100 text-violet-600" : "bg-gray-100 text-gray-400"
                 }`}
               >
                 {countFor(cat)}
@@ -80,60 +133,179 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
         </div>
       </div>
 
-      {/* Reports List */}
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      {/* Reports */}
+      <main className="max-w-5xl mx-auto px-6 py-8">
         {filtered.length === 0 ? (
-          <div className="text-center text-white/30 py-20 text-sm">
-            아직 기록이 없어요
-          </div>
+          <div className="text-center text-gray-400 py-20 text-sm">아직 기록이 없어요</div>
         ) : (
-          <div className="space-y-3">
-            {filtered.map((report) => (
-              <div
-                key={report.id}
-                className="group bg-white/[0.03] border border-white/10 rounded-xl p-5 hover:bg-white/[0.06] hover:border-white/20 transition-all cursor-pointer"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-white/30 text-xs font-mono">
-                        #{String(report.id).padStart(3, "0")}
-                      </span>
-                      <span
-                        className={`text-xs border rounded-full px-2 py-0.5 ${
-                          CATEGORY_COLORS[report.category] ??
-                          "bg-white/10 text-white/50 border-white/20"
-                        }`}
-                      >
-                        {report.category}
-                      </span>
-                    </div>
-                    <h2 className="font-semibold text-white/90 group-hover:text-white transition-colors leading-snug">
-                      {report.title}
-                    </h2>
-                    <p className="text-sm text-white/40 mt-1.5 leading-relaxed line-clamp-2">
-                      {report.summary}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {report.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs text-white/30 bg-white/5 rounded px-2 py-0.5"
-                        >
-                          {tag}
+          <div className="grid gap-3">
+            {filtered.map((report) => {
+              const color = CATEGORY_COLORS[report.category];
+              return (
+                <div
+                  key={report.id}
+                  onClick={() => openDetail(report)}
+                  className="bg-white border border-gray-200 rounded-xl p-5 hover:border-violet-300 hover:shadow-md transition-all cursor-pointer group"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-gray-300 text-xs font-mono">
+                          #{String(report.id).padStart(3, "0")}
                         </span>
-                      ))}
+                        {color && (
+                          <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1 ${color.bg} ${color.text}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${color.dot}`} />
+                            {report.category}
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="font-semibold text-gray-800 group-hover:text-violet-700 transition-colors">
+                        {report.title}
+                      </h2>
+                      <p className="text-sm text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                        {report.summary}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {report.tags.map((tag) => (
+                          <span key={tag} className="text-xs text-gray-400 bg-gray-100 rounded px-2 py-0.5">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end gap-2 shrink-0">
+                      <time className="text-xs text-gray-400">{report.date}</time>
+                      <span className="text-gray-300 group-hover:text-violet-400 transition-colors text-lg">→</span>
                     </div>
                   </div>
-                  <time className="text-xs text-white/30 whitespace-nowrap pt-0.5">
-                    {report.date}
-                  </time>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </main>
+
+      {/* Detail Modal */}
+      {selected && (
+        <div
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-20 flex items-center justify-center p-4"
+          onClick={(e) => e.target === e.currentTarget && setSelected(null)}
+        >
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6">
+            {!editMode ? (
+              <>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-mono text-gray-400">#{String(selected.id).padStart(3, "0")}</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setEditMode(true)}
+                      className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-1.5 rounded-lg transition-colors"
+                    >
+                      ✏️ 수정
+                    </button>
+                    <button
+                      onClick={() => setSelected(null)}
+                      className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-500 px-3 py-1.5 rounded-lg transition-colors"
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </div>
+                <h2 className="text-xl font-bold text-gray-900 mb-3">{selected.title}</h2>
+                <p className="text-gray-600 leading-relaxed mb-4">{selected.summary}</p>
+                <div className="flex flex-wrap gap-2">
+                  {selected.tags.map((tag) => (
+                    <span key={tag} className="text-xs bg-gray-100 text-gray-500 rounded px-2 py-1">{tag}</span>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-400 mt-4">{selected.date}</p>
+              </>
+            ) : (
+              <>
+                <h3 className="font-semibold text-gray-800 mb-4">수정하기</h3>
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">제목</label>
+                    <input
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-violet-400"
+                      value={editData?.title}
+                      onChange={(e) => setEditData((d) => d ? { ...d, title: e.target.value } : d)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">요약</label>
+                    <textarea
+                      rows={3}
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-violet-400 resize-none"
+                      value={editData?.summary}
+                      onChange={(e) => setEditData((d) => d ? { ...d, summary: e.target.value } : d)}
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-medium text-gray-500 mb-1 block">카테고리</label>
+                    <select
+                      className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-violet-400"
+                      value={editData?.category}
+                      onChange={(e) => setEditData((d) => d ? { ...d, category: e.target.value } : d)}
+                    >
+                      {CATEGORIES.filter((c) => c !== "전체").map((c) => (
+                        <option key={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="flex gap-2 mt-4">
+                  <button onClick={saveEdit} className="flex-1 bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium py-2 rounded-lg transition-colors">
+                    저장
+                  </button>
+                  <button onClick={() => setEditMode(false)} className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm py-2 rounded-lg transition-colors">
+                    취소
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Chat Widget */}
+      {chatOpen && (
+        <div className="fixed bottom-4 right-4 z-30 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
+          <div className="bg-violet-600 px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-white text-sm font-medium">AI 수정 요청</span>
+            </div>
+            <button onClick={() => setChatOpen(false)} className="text-white/70 hover:text-white text-lg leading-none">×</button>
+          </div>
+          <div className="flex-1 p-3 space-y-2 overflow-y-auto max-h-64">
+            {chatMessages.map((m, i) => (
+              <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div className={`text-xs rounded-xl px-3 py-2 max-w-[85%] leading-relaxed ${
+                  m.role === "user"
+                    ? "bg-violet-600 text-white"
+                    : "bg-gray-100 text-gray-700"
+                }`}>
+                  {m.text}
                 </div>
               </div>
             ))}
           </div>
-        )}
-      </main>
+          <div className="border-t border-gray-100 p-2 flex gap-2">
+            <input
+              className="flex-1 text-xs border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:border-violet-400"
+              placeholder="수정 요청 입력..."
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendChat()}
+            />
+            <button onClick={sendChat} className="bg-violet-600 hover:bg-violet-700 text-white text-xs px-3 py-2 rounded-lg transition-colors">
+              전송
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

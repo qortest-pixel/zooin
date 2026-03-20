@@ -13,13 +13,15 @@ type Report = {
   content?: string;
 };
 
-const CATEGORIES = ["전체", "전략", "분석", "자동화", "대화"];
+const CATEGORIES = ["전체", "기획서", "아키텍처", "자동화", "결과보고", "태스크", "대화"];
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }> = {
-  전략: { bg: "bg-violet-100", text: "text-violet-700", dot: "bg-violet-400" },
-  분석: { bg: "bg-blue-100", text: "text-blue-700", dot: "bg-blue-400" },
-  자동화: { bg: "bg-emerald-100", text: "text-emerald-700", dot: "bg-emerald-400" },
-  대화: { bg: "bg-amber-100", text: "text-amber-700", dot: "bg-amber-400" },
+  기획서:  { bg: "bg-violet-100", text: "text-violet-700", dot: "bg-violet-400" },
+  아키텍처: { bg: "bg-blue-100",   text: "text-blue-700",   dot: "bg-blue-400"   },
+  자동화:  { bg: "bg-emerald-100", text: "text-emerald-700", dot: "bg-emerald-400" },
+  결과보고: { bg: "bg-teal-100",   text: "text-teal-700",   dot: "bg-teal-400"   },
+  태스크:  { bg: "bg-orange-100",  text: "text-orange-700", dot: "bg-orange-400" },
+  대화:    { bg: "bg-amber-100",  text: "text-amber-700",  dot: "bg-amber-400"  },
 };
 
 // Model usage: wired up after Cloudflare tunnel setup
@@ -99,7 +101,7 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
             <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-blue-500 rounded-lg" />
             <div>
               <h1 className="text-lg font-bold tracking-tight leading-none">zooin Reports</h1>
-              <p className="text-xs text-gray-400 mt-0.5">전략 · 분석 · 자동화 · 대화</p>
+              <p className="text-xs text-gray-400 mt-0.5">기획 · 아키텍처 · 자동화 · 결과보고</p>
             </div>
           </div>
 
@@ -117,11 +119,17 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
                 <span className="text-xs font-medium text-gray-600">{m.used}%</span>
               </div>
             ))}
+            <a
+              href="/crons"
+              className="hidden sm:flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-800 border border-gray-200 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              ⚙️ 크론 대시보드
+            </a>
             <button
               onClick={() => setChatOpen(true)}
               className="flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
             >
-              <span>💬</span> AI 수정 요청
+              <span>💬</span> AI 요청
             </button>
           </div>
         </div>

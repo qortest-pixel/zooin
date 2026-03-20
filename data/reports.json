@@ -1,47 +1,56 @@
 [
   {
+    "id": 6,
+    "title": "acpx 플러그인 활성화 및 뉴런 체인 실행 환경 구성",
+    "summary": "ACP 런타임 플러그인 활성화. sessions_spawn으로 agentId 기반 체인 호출 가능해짐.",
+    "category": "아키텍처",
+    "date": "2026-03-20",
+    "tags": ["acpx", "ACP", "Plugin", "OpenClaw"],
+    "content": "# acpx 플러그인 활성화\n\n## 목적\nACP 런타임 백엔드를 활성화해 `sessions_spawn`에서 `agentId` 기반으로 특정 에이전트를 직접 호출할 수 있게 함.\n\n## 변경 사항\n- `openclaw plugins enable acpx` 실행\n- `openclaw.json`에 acpx 플러그인 활성화 설정 추가\n- 게이트웨이 재시작으로 적용\n\n## 활성화 전/후 차이\n| 항목 | 이전 | 이후 |\n|------|------|------|\n| sessions_spawn agentId | 불가 (forbidden) | 가능 |\n| 에이전트 간 체인 | 불가 | 가능 |\n| 뉴런 체인 자동화 | 시뮬레이션 | 실제 실행 |\n\n## 상태\n✅ 플러그인 활성화 완료\n✅ 게이트웨이 재시작 완료"
+  },
+  {
     "id": 5,
     "title": "뉴런 체인 자동화 (Neuron Chain Automation)",
-    "summary": "목표 수신 → 태스크 분해 → 모델별 분담 → 결과 체인 → 통합 보고",
-    "category": "자동화",
+    "summary": "목표 수신 → 태스크 분해 → Router 분류 → 전문 에이전트 체인 → 결과 통합 보고",
+    "category": "아키텍처",
     "date": "2026-03-20",
     "tags": ["NeuronChain", "Multi-Agent", "Router", "OpenClaw"],
-    "content": "# 뉴런 체인 자동화 (Neuron Chain)\n\n## 개요\n대표님의 목표를 받으면 단계별로 분해해 각 단계에 맞는 전문 에이전트를 호출하고, 각 결과를 다음 에이전트의 입력으로 연결해 최종 결과를 통합 보고하는 자동화 시스템.\n\n## 아키텍처\n```\n[대표님 목표 수신]\n        ↓\n[Router] 업무 분해 + 분류\n  → route: A(analyst) / S(strategist) / E(executor) / C(casual)\n        ↓\n[병렬 or 순차 에이전트 호출]\n  - analyst (Sonnet): 리서치, 현황파악, 팩트체크\n  - strategist (Opus): 기획, 전략, 설계\n  - executor (Opus): 코드, 자동화, 실행\n        ↓\n[체인 연결: 앞 단계 결과 → 다음 에이전트 컨텍스트]\n        ↓\n[최종 결과 통합 → 대표님 보고]\n```\n\n## 핵심 원칙\n- **항상 분해 먼저**: 바로 실행 X, 태스크를 쪼개고 시작\n- **체인 연결**: 앞 단계 결과를 다음 단계 input으로 전달\n- **병렬 처리**: 순서 무관한 태스크는 동시 spawn\n- **직접 처리 금지**: main이 전문 영역을 혼자 처리하지 않음\n\n## 구현 상태\n- ✅ 에이전트 4종 등록 (main/analyst/strategist/executor)\n- ✅ AGENTS.md 뉴런 체인 패턴 등록\n- 🔄 acpx 플러그인 활성화 (에이전트 간 실제 체인 구현 중)\n- 📋 llm-task Router 설정 예정"
+    "content": "# 뉴런 체인 자동화 (Neuron Chain)\n\n## 개요\n대표님의 목표를 받으면 단계별로 분해해 각 단계에 맞는 전문 에이전트를 호출하고, 각 결과를 다음 에이전트의 입력으로 연결해 최종 결과를 통합 보고하는 자동화 시스템.\n\n## 아키텍처\n```\n[대표님 목표 수신]\n        ↓\n[Router] 업무 분해 + 분류\n  → route: A(analyst) / S(strategist) / E(executor) / C(casual)\n        ↓\n[병렬 or 순차 에이전트 호출]\n  - analyst (Sonnet): 리서치, 현황파악, 팩트체크\n  - strategist (Opus): 기획, 전략, 설계\n  - executor (Opus): 코드, 자동화, 실행\n        ↓\n[체인 연결: 앞 단계 결과 → 다음 에이전트 컨텍스트]\n        ↓\n[최종 결과 통합 → 대표님 보고]\n```\n\n## 핵심 원칙\n- **항상 분해 먼저**: 바로 실행 X, 태스크를 쪼개고 시작\n- **체인 연결**: 앞 단계 결과를 다음 단계 input으로 전달\n- **병렬 처리**: 순서 무관한 태스크는 동시 spawn\n- **직접 처리 금지**: main이 전문 영역을 혼자 처리하지 않음\n\n## 구현 현황\n- ✅ 에이전트 4종 등록 (main/analyst/strategist/executor)\n- ✅ AGENTS.md 뉴런 체인 패턴 등록\n- ✅ acpx 플러그인 활성화\n- 📋 llm-task Router 설정 예정"
   },
   {
     "id": 4,
     "title": "멀티 에이전트 라우팅 시스템 구축",
     "summary": "main(Sonnet) → analyst/strategist/executor 분기 구조. 전부 Anthropic 토큰 사용.",
-    "category": "자동화",
+    "category": "아키텍처",
     "date": "2026-03-20",
     "tags": ["OpenClaw", "Multi-Agent", "Routing"],
-    "content": "# 멀티 에이전트 라우팅 시스템\n\n## 배경\n대표님의 롤모델이 사용하는 구조를 참고해, 작업 유형에 따라 최적 모델을 자동으로 선택하는 시스템 구축.\n\n## 에이전트 구성\n| Agent | Model | 역할 |\n|-------|-------|------|\n| main | claude-sonnet-4-6 (Anthropic) | Router, 잡담, 직접 답변 |\n| analyst | claude-sonnet-4-6 (Anthropic) | 리서치, 현황파악, 데이터 분석 |\n| strategist | claude-opus-4-6 (Anthropic) | 기획, 전략, 의사결정 |\n| executor | claude-opus-4-6 (Anthropic) | 코드, 자동화, 실행 |\n\n## 모델 선택 근거\n- **Sonnet**: 빠르고 저렴, 리서치/일상 대화에 충분\n- **Opus**: 느리지만 깊은 추론, 전략/실행에 필요\n- **GitHub Copilot 미사용**: Opus 할당량이 적어 Anthropic 토큰으로 통일\n- **로컬(llama3.2:3b)**: 메모리 백그라운드 워커용\n\n## 적용된 설정 (openclaw.json)\n```json\n{\n  \"agents\": {\n    \"list\": [\n      {\"id\": \"main\", \"default\": true, \"workspace\": \"~/.openclaw/workspace\"},\n      {\"id\": \"analyst\", \"model\": \"anthropic/claude-sonnet-4-6\"},\n      {\"id\": \"strategist\", \"model\": \"anthropic/claude-opus-4-6\"},\n      {\"id\": \"executor\", \"model\": \"anthropic/claude-opus-4-6\"}\n    ]\n  }\n}\n```\n\n## 각 에이전트 워크스페이스\n- `~/.openclaw/workspace-analyst` - Analyst SOUL.md/AGENTS.md\n- `~/.openclaw/workspace-strategist` - Strategist SOUL.md/AGENTS.md\n- `~/.openclaw/workspace-executor` - Executor SOUL.md/AGENTS.md"
+    "content": "# 멀티 에이전트 라우팅 시스템\n\n## 배경\n대표님의 롤모델이 사용하는 구조를 참고해, 작업 유형에 따라 최적 모델을 자동으로 선택하는 시스템 구축.\n\n## 에이전트 구성\n| Agent | Model | 역할 |\n|-------|-------|------|\n| main | claude-sonnet-4-6 (Anthropic) | Router, 잡담, 직접 답변 |\n| analyst | claude-sonnet-4-6 (Anthropic) | 리서치, 현황파악, 데이터 분석 |\n| strategist | claude-opus-4-6 (Anthropic) | 기획, 전략, 의사결정 |\n| executor | claude-opus-4-6 (Anthropic) | 코드, 자동화, 실행 |\n\n## 모델 선택 근거\n- **Sonnet**: 빠르고 저렴, 리서치/일상 대화에 충분\n- **Opus**: 느리지만 깊은 추론, 전략/실행에 필요\n- **GitHub Copilot 미사용**: Opus 할당량이 적어 Anthropic 토큰으로 통일\n- **로컬(llama3.2:3b)**: 메모리 백그라운드 워커용\n\n## 적용된 설정\n```json\n{\n  \"agents\": {\n    \"list\": [\n      {\"id\": \"main\", \"default\": true},\n      {\"id\": \"analyst\", \"model\": \"anthropic/claude-sonnet-4-6\"},\n      {\"id\": \"strategist\", \"model\": \"anthropic/claude-opus-4-6\"},\n      {\"id\": \"executor\", \"model\": \"anthropic/claude-opus-4-6\"}\n    ]\n  }\n}\n```"
   },
   {
     "id": 3,
     "title": "zooin Reports 사이트 구축 및 배포",
     "summary": "Next.js + Vercel로 작업 아카이브 사이트 구축. zooin.vercel.app 배포 완료.",
-    "category": "자동화",
+    "category": "결과보고",
     "date": "2026-03-20",
     "tags": ["Next.js", "Vercel", "GitHub", "zooin"],
-    "content": "# zooin Reports 사이트\n\n## 목적\n대표님과 AI가 함께 작업한 내역을 카테고리별로 아카이빙하고 언제든 열람 가능한 웹사이트.\n\n## 기술 스택\n- **Frontend**: Next.js 14 (App Router) + TypeScript\n- **스타일**: Tailwind CSS\n- **배포**: Vercel (자동 배포 - GitHub push 시)\n- **데이터**: `/data/reports.json` (정적 JSON)\n\n## 주요 기능\n1. **카테고리 필터**: 전체 / 전략 / 분석 / 자동화 / 대화\n2. **카드 클릭 → 상세 모달**: 전체 내용 열람\n3. **인라인 편집**: 모달에서 제목/요약/카테고리 직접 수정\n4. **AI 수정 요청 채팅**: 채팅창 → 텔레그램 실시간 전송 → AI 처리\n\n## 배포 과정\n1. `npx create-next-app@latest zooin` - 프로젝트 생성\n2. GitHub 레포 생성 (qortest-pixel/zooin)\n3. Git push → Vercel 자동 배포\n4. URL: https://zooin.vercel.app\n\n## 채팅 연동\n- 사이트 채팅창 → Telegram Bot API 직접 호출\n- Bot: `8254002875` → 대표님 텔레그램으로 전달\n- AI가 받아서 처리 후 답변\n\n## 앞으로 추가 예정\n- 실시간 모델 사용량 게이지 (OpenClaw API 연동)\n- 자동 리포트 저장 (작업 완료 시 자동 추가)\n- 검색 기능"
+    "content": "# zooin Reports 사이트\n\n## 목적\n대표님과 AI가 함께 작업한 내역을 카테고리별로 아카이빙하고 언제든 열람 가능한 웹사이트.\n\n## 기술 스택\n- **Frontend**: Next.js 14 (App Router) + TypeScript\n- **스타일**: Tailwind CSS + @tailwindcss/typography\n- **배포**: Vercel (GitHub push 시 자동 배포)\n- **데이터**: `/data/reports.json`\n\n## 주요 기능\n1. **카테고리 필터**: 전체 / 태스크 / 아키텍처 / 기획서 / 자동화 / 코드리뷰 / 결과보고\n2. **카드 클릭 → 상세 모달**: 마크다운 전체 내용 렌더링\n3. **인라인 편집**: 제목/요약/카테고리 직접 수정\n4. **AI 수정 요청 채팅**: → 텔레그램 실시간 전송\n5. **크론 대시보드**: 자동화 작업 실시간 현황\n\n## 배포\n- GitHub: github.com/qortest-pixel/zooin\n- URL: https://zooin.vercel.app"
   },
   {
     "id": 2,
-    "title": "수면 알림 시스템 구축 및 비활성화",
+    "title": "수면 알림 크론 시스템",
     "summary": "23:30~02:00 수면 점검 크론 3개 구성 후 대표님 요청으로 비활성화.",
     "category": "자동화",
     "date": "2026-03-20",
     "tags": ["Cron", "Sleep", "Automation"],
-    "content": "# 수면 알림 시스템\n\n## 구성\n취침 여부 확인 후 미취침 시 준비 안내를 보내는 자동화 크론 3개.\n\n## 크론 일정\n| ID | 스케줄 | 역할 |\n|----|--------|------|\n| sleep-coach:start-2330 | 23:30 매일 | 최초 수면 체크 |\n| sleep-coach:every-10m-2330-window | 23:40, 23:50 | 10분 간격 재확인 |\n| sleep-coach:every-10m-midnight-window | 00:00~02:00 매 10분 | 자정 이후 반복 확인 |\n\n## 동작 방식\n1. 크론 트리거 → AI가 취침 여부 메모리 확인\n2. 미취침 확인 시 → 텔레그램으로 준비 안내 전송\n3. 취침 확인 시 (`잘게` 등) → NO_REPLY 처리\n\n## 상태\n- 2026-03-20 01:51 대표님이 `잘게`로 취침 확인\n- 2026-03-20 14:12 대표님 요청으로 3개 모두 비활성화\n- 현재 상태: **disabled**"
+    "content": "# 수면 알림 시스템\n\n## 구성\n취침 여부 확인 후 미취침 시 준비 안내를 보내는 자동화 크론 3개.\n\n## 크론 일정\n| 이름 | 스케줄 | 역할 |\n|------|--------|------|\n| sleep-coach:start-2330 | 23:30 매일 | 최초 수면 체크 |\n| sleep-coach:every-10m-2330-window | 23:40, 23:50 | 10분 간격 재확인 |\n| sleep-coach:every-10m-midnight-window | 00:00~02:00 매 10분 | 자정 이후 반복 확인 |\n\n## 현재 상태\n- 2026-03-20 01:51 대표님 `잘게`로 취침 확인\n- 2026-03-20 14:12 대표님 요청으로 3개 모두 **비활성화**"
   },
   {
     "id": 1,
-    "title": "OpenClaw 초기 세팅 및 AI 자동화 마스터 로드맵",
-    "summary": "OpenClaw 멀티 에이전트 환경 구축. AI 자동화 마스터를 향한 5단계 로드맵 설정.",
-    "category": "전략",
+    "title": "AI 자동화 마스터 로드맵",
+    "summary": "OpenClaw 기반 AI 자동화 마스터를 향한 5단계 전략 로드맵.",
+    "category": "기획서",
     "date": "2026-03-20",
     "tags": ["OpenClaw", "Roadmap", "Strategy", "AI"],
-    "content": "# AI 자동화 마스터 로드맵\n\n## 대표님의 목표\n> \"내가 나한테 치명적이지 않으면 바로 알아서 하라. 앞으로 모든걸 다 알아서 해줘.\"\n\nAI 자동화 마스터가 되는 것. 롤모델보다 더 뛰어난 OpenClaw 활용.\n\n## 현재 환경 강점\n- GitHub Copilot: Sonnet/Opus/Gemini Flash 모두 사용 가능\n- Anthropic API: claude-sonnet-4-6 (메인)\n- OpenRouter: 다양한 모델 접근\n- 로컬: ollama/llama3.2:3b\n- → **Claude Max 2개 없이도 다중 프로바이더로 커버**\n\n## 5단계 로드맵\n\n### 1단계 (진행 중) - 멀티 에이전트 라우팅\n- ✅ main/analyst/strategist/executor 분리\n- ✅ AGENTS.md 뉴런 체인 패턴 등록\n- 🔄 acpx 플러그인 기반 실제 체인 구현\n\n### 2단계 - 워크플로우 자동화 (Lobster)\n- 반복 작업을 에이전트가 알아서 처리\n- 트리거 기반 자동 실행\n\n### 3단계 - 메모리 시스템 고도화\n- Qwen/로컬 모델로 백그라운드 분류·저장\n- 장기 메모리 자동 요약\n\n### 4단계 - 외부 시스템 연동\n- 캘린더, 이메일, 슬랙, 노션 연동\n- 정보 허브화\n\n### 5단계 - 완전 자율 에이전트\n- 대표님 지시 없이 스스로 판단·실행\n- 목표 달성형 자율 운영\n\n## 운영 원칙\n- **자율 권한**: 결제·대량삭제 외 모든 작업 자율 처리\n- **뉴런 체인**: 목표 → 분해 → 체인 → 보고\n- **보고 형식**: 어떤 에이전트가 무슨 작업을 했는지 명확히"
+    "content": "# AI 자동화 마스터 로드맵\n\n## 대표님의 목표\n> 롤모델보다 더 뛰어난 OpenClaw 활용. AI 자동화의 마스터.\n\n## 5단계 로드맵\n\n### ✅ 1단계 — 멀티 에이전트 라우팅 (완료)\n- main / analyst / strategist / executor 분리\n- 뉴런 체인 자동화 패턴 등록\n- acpx 플러그인 활성화\n\n### 📋 2단계 — 워크플로우 자동화 (Lobster)\n- 반복 작업 에이전트 자동 처리\n- 트리거 기반 실행\n\n### 📋 3단계 — 메모리 시스템 고도화\n- 로컬 모델로 백그라운드 분류·저장\n- 장기 메모리 자동 요약\n\n### 📋 4단계 — 외부 시스템 연동\n- 캘린더, 이메일, 슬랙, 노션\n\n### 📋 5단계 — 완전 자율 에이전트\n- 지시 없이 목표 달성형 자율 운영\n\n## 운영 원칙\n- 결제·대량삭제 외 전권 자율 처리\n- 목표 → 분해 → 체인 → 보고"
   }
 ]

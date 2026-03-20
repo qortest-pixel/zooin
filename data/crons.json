@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sleep-coach-start",
+    "name": "수면 코치 시작",
+    "schedule": "매일 23:30",
+    "model": "Sonnet",
+    "status": "disabled",
+    "lastResult": "대표님 요청으로 비활성화 (2026-03-20)",
+    "note": "취침 확인 후 준비 안내 전송"
+  },
+  {
+    "id": "sleep-coach-2330",
+    "name": "수면 체크 (23:40~50)",
+    "schedule": "매일 23:40, 23:50",
+    "model": "Sonnet",
+    "status": "disabled",
+    "lastResult": "대표님 요청으로 비활성화 (2026-03-20)",
+    "note": "10분 간격 재확인"
+  },
+  {
+    "id": "sleep-coach-midnight",
+    "name": "수면 체크 (자정~02:00)",
+    "schedule": "매일 00:00~02:00 매 10분",
+    "model": "Sonnet",
+    "status": "disabled",
+    "lastResult": "대표님 요청으로 비활성화 (2026-03-20)",
+    "note": "자정 이후 반복 확인"
+  }
+]

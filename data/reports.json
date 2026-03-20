@@ -1,18 +1,26 @@
 [
   {
-    "id": 1,
-    "title": "멀티 에이전트 라우팅 시스템 설계",
-    "summary": "main(Sonnet) → analyst/strategist/executor 자동 위임 구조 구축. 작업 난이도에 따라 Sonnet/Opus 자동 분기.",
+    "id": 3,
+    "title": "뉴런 체인 자동화 (Neuron Chain)",
+    "summary": "목표 수신 → 태스크 분해 → Router(Gemini Flash)가 JSON 분류 → Analyst/Strategist/Executor 체인 호출 → 결과 통합 보고. 각 에이전트가 전 단계 결과를 input으로 받아 연속 처리.",
+    "category": "자동화",
+    "date": "2026-03-20",
+    "tags": ["NeuronChain", "Multi-Agent", "Router", "OpenClaw"]
+  },
+  {
+    "id": 2,
+    "title": "멀티 에이전트 라우팅 시스템 구축",
+    "summary": "main(Sonnet) → analyst(Sonnet) / strategist(Opus) / executor(Opus) 분기 구조 구축. 전부 Anthropic 토큰 사용. 작업 난이도에 따라 모델 자동 분기.",
     "category": "자동화",
     "date": "2026-03-20",
     "tags": ["OpenClaw", "Multi-Agent", "Automation"]
   },
   {
-    "id": 2,
-    "title": "AI 자동화 마스터 로드맵",
-    "summary": "1단계 멀티에이전트 → 2단계 워크플로우(Lobster) → 3단계 메모리 고도화 → 4단계 외부연동 → 5단계 완전 자율 에이전트",
-    "category": "전략",
+    "id": 1,
+    "title": "zooin Reports 사이트 런칭",
+    "summary": "Next.js + Vercel로 작업 아카이브 사이트 구축. 클릭 모달, 인라인 수정, 텔레그램 실시간 채팅 연동 완료. zooin.vercel.app 배포.",
+    "category": "자동화",
     "date": "2026-03-20",
-    "tags": ["Strategy", "Roadmap", "AI"]
+    "tags": ["Next.js", "Vercel", "zooin"]
   }
 ]

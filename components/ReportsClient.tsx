@@ -58,11 +58,18 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
     setChatMessages((prev) => [...prev, { role: "user", text: userMsg }]);
     setChatInput("");
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg }),
-      });
+      const res = await fetch(
+        `https://api.telegram.org/bot8254002875:AAEsgasUuHMDnnXMUZl_VEYmKH9kW5PpBrY/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: "6478080843",
+            text: `🌐 *zooin 사이트에서 요청*\n\n${userMsg}`,
+            parse_mode: "Markdown",
+          }),
+        }
+      );
       const data = await res.json();
       setChatMessages((prev) => [
         ...prev,
@@ -70,7 +77,7 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
           role: "ai",
           text: data.ok
             ? "✅ 전송됐습니다! 텔레그램으로 확인해보세요."
-            : `❌ 오류: ${data.error}`,
+            : "❌ 전송 실패. 잠시 후 다시 시도해주세요.",
         },
       ]);
     } catch {

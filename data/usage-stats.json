@@ -1,0 +1,44 @@
+{
+  "updatedAt": "2026-03-20T22:38:22.881437+09:00",
+  "updatedAtKST": "2026-03-20 22:38 KST",
+  "model": "anthropic/claude-sonnet-4-6",
+  "contextUsed": 82,
+  "contextLimit": 200,
+  "contextPercent": 41,
+  "cacheHitRate": 99,
+  "compactions": 6,
+  "status": "active",
+  "gatewayPort": 18789,
+  "agents": [
+    {
+      "id": "main",
+      "model": "claude-sonnet-4-6",
+      "status": "active"
+    },
+    {
+      "id": "analyst",
+      "model": "claude-sonnet-4-6",
+      "status": "ready"
+    },
+    {
+      "id": "strategist",
+      "model": "claude-opus-4-6",
+      "status": "ready"
+    },
+    {
+      "id": "executor",
+      "model": "gpt-5.4",
+      "status": "ready"
+    },
+    {
+      "id": "researcher",
+      "model": "kimi-k2",
+      "status": "ready"
+    },
+    {
+      "id": "casual",
+      "model": "gemini-flash",
+      "status": "ready"
+    }
+  ]
+}

@@ -20,10 +20,8 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; dot: string }>
   대화: { bg: "bg-amber-100", text: "text-amber-700", dot: "bg-amber-400" },
 };
 
-const MODELS = [
-  { name: "Sonnet", color: "bg-blue-500", used: 62, total: 100 },
-  { name: "Opus", color: "bg-violet-500", used: 28, total: 100 },
-];
+// Model usage: wired up after Cloudflare tunnel setup
+const MODELS: { name: string; color: string; used: number; total: number }[] = [];
 
 export default function ReportsClient({ reports: initialReports }: { reports: Report[] }) {
   const [activeTab, setActiveTab] = useState("전체");

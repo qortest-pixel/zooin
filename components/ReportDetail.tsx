@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Report = {
   id: number;
@@ -79,7 +80,9 @@ export default function ReportDetail({ report }: { report: Report }) {
               prose-blockquote:border-l-4 prose-blockquote:border-violet-300 prose-blockquote:text-gray-500 prose-blockquote:italic prose-blockquote:bg-violet-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
               prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
               prose-hr:border-gray-100">
-              {report.content ? <ReactMarkdown>{report.content}</ReactMarkdown> : <p>{report.summary}</p>}
+              {report.content
+                ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{report.content}</ReactMarkdown>
+                : <p>{report.summary}</p>}
             </div>
           </div>
         </div>

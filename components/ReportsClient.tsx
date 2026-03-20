@@ -44,9 +44,7 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
     cat === "전체" ? reports.length : reports.filter((r) => r.category === cat).length;
 
   function openDetail(r: Report) {
-    setSelected(r);
-    setEditData({ ...r });
-    setEditMode(false);
+    window.open(`/reports/${r.id}`, "_blank");
   }
 
   function saveEdit() {

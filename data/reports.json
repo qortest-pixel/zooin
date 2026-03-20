@@ -1,11 +1,34 @@
 [
   {
+    "id": 8,
+    "title": "메타 마케팅 시장조사 & 신제품 기획서",
+    "summary": "국내외 메타(인스타/페이스북) 바이럴 성공 사례 분석 + 생활/뷰티/정보상품 신제품 기획 3개 카테고리",
+    "category": "기획서",
+    "date": "2026-03-20",
+    "tags": [
+      "Meta",
+      "Instagram",
+      "Facebook",
+      "릴스",
+      "광고",
+      "바이럴",
+      "신제품기획"
+    ],
+    "content": "# 메타 마케팅 시장조사 & 신제품 기획서\n\n## 국내 바이럴 성공 벤치마크\n\n### 아워홈 '온더고' (냉동도시락)\n- 캠페인: \"까보면 안다고, 온더고\" — 3편 시리즈 릴스\n- 결과: 누적 조회 3,400만 뷰, 광고 후 일 매출 +152%\n- 핵심: 개봉 순간 시각적 임팩트 + 시리즈로 다음 편 기대감 유발\n\n### 롯데웰푸드 '설레임런'\n- 캠페인: 열받는 러닝대회 콘셉트 숏폼\n- 결과: 한 달 만에 2,000만 뷰\n- 핵심: 제품과 연결된 스토리 세계관 구축\n\n### 오뚜기 'WOW 컵면'\n- 캠페인: AI로 거대한 건더기가 현실에 등장하는 블록버스터 스타일\n- 결과: 디지털 광고대상 3관왕\n- 핵심: 제품 특장점 과장 시각화 → 기억에 남음\n\n### 다슈 헤어제품\n- 캠페인: 셀럽 추천 + 한정 프로모션 릴스\n- 핵심: 신뢰(셀럽) + 긴박감(한정) 조합\n\n### 1인 셀러 공통 패턴\n- 아동복, 살림용품, 뷰티 — 월 3,000만 원 사례 다수\n- 팔로워 수보다 콘텐츠 질 + 공동구매 구조가 핵심\n\n## 성공 공식 분석\n\n| 요소 | 공식 | 수치 |\n|------|------|------|\n| 후킹 | 첫 2~3초 충격/궁금증 유발 | CTR 5배 차이 |\n| 구조 | 문제→공감→제품→후기→CTA | 전환율 핵심 |\n| 형식 | 꾸밈없는 UGC 스타일 > 고퀄 광고 | 진정성 = 신뢰 |\n| 타겟 | 광범위 타겟 + AI에 맡기기 | ROAS 최적 |\n| 리타겟 | 영상 시청→웹 방문→장바구니 3단계 | 전환율 결정 |\n| 메타 AI | Advantage+ 캠페인 | 전환 +23%, CTR +3% |\n\n## 신제품 아이디어 기획\n\n### A. 생활/살림 (즉시 터지는 영역)\n릴스로 가장 잘 팔리고, 1인 셀러 성공 사례 최다\n\n- 주방 정리 마법템: \"이거 하나로 싱크대 완전 정리됨\" → 주부, 신혼부부\n- 극한 수납 솔루션: 냉장고/옷장 before&after → 20~40대 여성\n- 1분 청소 도구: \"이게 되네?\" 시연 영상 → 바쁜 직장인\n\n### B. 뷰티/셀프케어\n시각적 before&after → 릴스 최강\n\n- 10분 홈케어 루틴 세트: \"피부과 안가도 됨\" 비교 → 30~40대 여성\n- 남성 그루밍 입문 세트: \"이것만 있으면 완성\" → 20~30대 남성\n\n### C. 정보상품 (마진 최고)\n제작 원가 0, ROAS 10배 이상 가능\n\n- AI 자동화 수익화 클래스: \"직원 없이 혼자 월 1천\" → 부업 관심자\n- 메타 광고 실전 가이드: \"ROAS 8배 나옴\" → 소상공인\n- 부업/재테크 정보 채널: 데일리 팁 → 유료 커뮤니티 → 직장인\n\n## 추천 액션 플랜\n\n1. 이번 주: 제품 카테고리 1개 결정\n2. 1주 차: 릴스 3개 제작 (후킹형/비교형/후기형)\n3. 2주 차: 메타 Advantage+ 캠페인 런칭 (일 3~5만원)\n4. 3주 차: 성과 분석 → ROAS 높은 소재 증액\n5. 1달 차: 리타겟팅 퍼널 구축 → 자동 수익화\n"
+  },
+  {
     "id": 7,
     "title": "모델 다각화 — 6 에이전트 풀 구성",
     "summary": "Sonnet/Opus 2개에서 Gemini Flash, GPT-5.4, Kimi K2 Thinking 등 6개 모델로 역할별 분산.",
     "category": "아키텍처",
     "date": "2026-03-20",
-    "tags": ["Multi-Model", "Gemini", "GPT-5.4", "Kimi", "OpenClaw"],
+    "tags": [
+      "Multi-Model",
+      "Gemini",
+      "GPT-5.4",
+      "Kimi",
+      "OpenClaw"
+    ],
     "content": "# 모델 다각화 — 6 에이전트 풀\n\n## 배경\n기존 Sonnet + Opus 2개 모델만 사용하던 구조에서 역할별 최적 모델로 분산.\n\n## 최종 에이전트 배분\n\n| 에이전트 | 모델 | 역할 | 과금 |\n|---------|------|------|------|\n| main | Claude Sonnet (Anthropic) | 코디네이터, 라우팅 | Anthropic |\n| casual | Gemini Flash (Copilot) | 빠른 답변, 잡담 | Copilot |\n| analyst | Claude Sonnet (Anthropic) | 분석, 리서치 | Anthropic |\n| strategist | Claude Opus (Copilot) | 전략, 기획 | Copilot |\n| executor | GPT-5.4 (CodeX) | 코드, 기술 구현 | CodeX |\n| researcher | Kimi K2 Thinking | 복잡한 추론, 딥리서치 | Kimi |\n| compaction | Gemini Flash (Copilot) | 컨텍스트 압축 | Copilot |\n\n## 토큰 절약 전략\n- Anthropic 토큰: main + analyst만 사용\n- 무거운 Opus는 Copilot 할당량으로 처리\n- 코딩은 CodeX(ChatGPT 구독) 활용\n- 빠른 응답/압축은 Gemini Flash(무료에 가까움)\n\n## 뉴런 체인 실행 시 모델 흐름\n```\n대표님 목표 → main(Sonnet) 분류\n  → 잡담: casual(Gemini Flash)\n  → 리서치: analyst(Sonnet)\n  → 전략: strategist(Opus/Copilot)\n  → 코드: executor(GPT-5.4)\n  → 딥리서치: researcher(Kimi K2)\n```"
   },
   {
@@ -14,7 +37,12 @@
     "summary": "ACP 런타임 플러그인 활성화. sessions_spawn으로 agentId 기반 체인 호출 가능.",
     "category": "아키텍처",
     "date": "2026-03-20",
-    "tags": ["acpx", "ACP", "Plugin", "OpenClaw"],
+    "tags": [
+      "acpx",
+      "ACP",
+      "Plugin",
+      "OpenClaw"
+    ],
     "content": "# acpx 플러그인 활성화\n\n## 목적\nsessions_spawn에서 agentId 기반으로 특정 에이전트를 직접 호출 가능하게 함.\n\n## 변경 사항\n- `openclaw plugins enable acpx` 실행\n- 게이트웨이 재시작으로 적용\n\n## 활성화 전/후\n| 항목 | 이전 | 이후 |\n|------|------|------|\n| sessions_spawn agentId | forbidden | 가능 |\n| 에이전트 간 체인 | 불가 | 가능 |\n| 뉴런 체인 자동화 | 시뮬레이션 | 실제 실행 |\n\n✅ 완료"
   },
   {
@@ -23,7 +51,11 @@
     "summary": "목표 수신 → 태스크 분해 → 전문 에이전트 체인 → 결과 통합 보고",
     "category": "아키텍처",
     "date": "2026-03-20",
-    "tags": ["NeuronChain", "Multi-Agent", "Router"],
+    "tags": [
+      "NeuronChain",
+      "Multi-Agent",
+      "Router"
+    ],
     "content": "# 뉴런 체인 자동화\n\n## 프로세스\n```\n[대표님 목표 수신]\n        ↓\n[main] 업무 분해 → 단계별 태스크\n        ↓\n[각 태스크 → 적합한 에이전트 호출]\n  - casual(Gemini Flash): 빠른 답변\n  - analyst(Sonnet): 리서치\n  - strategist(Opus): 전략\n  - executor(GPT-5.4): 코드/실행\n  - researcher(Kimi K2): 딥리서치\n        ↓\n[앞 단계 결과 → 다음 에이전트 input]\n        ↓\n[최종 통합 → 대표님 보고]\n```\n\n## 핵심 원칙\n- 항상 분해 먼저\n- 병렬 가능한 건 동시 spawn\n- main이 전문 영역 직접 처리 금지"
   },
   {
@@ -32,7 +64,11 @@
     "summary": "main 코디네이터 + 4개 전문 에이전트 분기 구조 초기 구축.",
     "category": "아키텍처",
     "date": "2026-03-20",
-    "tags": ["OpenClaw", "Multi-Agent", "Routing"],
+    "tags": [
+      "OpenClaw",
+      "Multi-Agent",
+      "Routing"
+    ],
     "content": "# 멀티 에이전트 라우팅 시스템\n\n## 초기 구성 (v1)\n- main: claude-sonnet-4-6\n- analyst: claude-sonnet-4-6\n- strategist: claude-opus-4-6\n- executor: claude-opus-4-6\n\n## v2로 진화\n→ casual(Gemini), strategist(Opus/Copilot), executor(GPT-5.4), researcher(Kimi) 추가\n\n## 설정 방식\n- `openclaw.json`의 `agents.list`에 per-agent 모델 지정\n- 각 에이전트 별도 workspace (SOUL.md + AGENTS.md)\n- Compaction: Gemini Flash"
   },
   {
@@ -41,7 +77,11 @@
     "summary": "Next.js + Vercel로 작업 아카이브 사이트 구축. zooin.vercel.app 배포.",
     "category": "결과보고",
     "date": "2026-03-20",
-    "tags": ["Next.js", "Vercel", "GitHub"],
+    "tags": [
+      "Next.js",
+      "Vercel",
+      "GitHub"
+    ],
     "content": "# zooin Reports\n\n## 기술 스택\n- Next.js 14 (App Router) + TypeScript + Tailwind CSS\n- Vercel 자동 배포 (GitHub push 연동)\n- 데이터: `/data/reports.json`\n\n## 기능\n1. 카테고리 필터 (아키텍처/기획서/자동화/결과보고/코드리뷰/태스크)\n2. 카드 클릭 → 마크다운 상세 모달\n3. 인라인 편집\n4. AI 수정 요청 채팅 → 텔레그램 실시간 전송\n5. 크론 대시보드 (/crons)\n\n## URL\nhttps://zooin.vercel.app"
   },
   {
@@ -50,7 +90,10 @@
     "summary": "23:30~02:00 수면 점검 크론 3개 → 대표님 요청으로 비활성화.",
     "category": "자동화",
     "date": "2026-03-20",
-    "tags": ["Cron", "Sleep"],
+    "tags": [
+      "Cron",
+      "Sleep"
+    ],
     "content": "# 수면 알림 시스템\n\n| 크론 | 스케줄 |\n|------|--------|\n| sleep-coach:start-2330 | 23:30 매일 |\n| sleep-coach:every-10m-2330 | 23:40, 23:50 |\n| sleep-coach:every-10m-midnight | 00:00~02:00 매 10분 |\n\n**현재 상태**: 2026-03-20 14:12 비활성화 (대표님 요청)"
   },
   {
@@ -59,7 +102,11 @@
     "summary": "5단계 로드맵. 1단계(멀티에이전트) 완료, 2단계(워크플로우) 진행 예정.",
     "category": "기획서",
     "date": "2026-03-20",
-    "tags": ["Roadmap", "Strategy", "AI"],
+    "tags": [
+      "Roadmap",
+      "Strategy",
+      "AI"
+    ],
     "content": "# AI 자동화 마스터 로드맵\n\n## 5단계\n1. ✅ 멀티 에이전트 라우팅\n2. 📋 워크플로우 자동화 (Lobster)\n3. 📋 메모리 고도화\n4. 📋 외부 시스템 연동\n5. 📋 완전 자율 에이전트\n\n## 운영 원칙\n- 결제·대량삭제 외 전권 자율\n- 뉴런 체인: 목표 → 분해 → 체인 → 보고"
   }
 ]

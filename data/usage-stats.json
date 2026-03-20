@@ -1,44 +1,80 @@
 {
-  "updatedAt": "2026-03-20T23:11:01.364931+09:00",
-  "updatedAtKST": "2026-03-20 23:11 KST",
-  "model": "anthropic/claude-sonnet-4-6",
+  "updatedAt": "2026-03-20T23:14:32.513987+09:00",
+  "updatedAtKST": "2026-03-20 23:14 KST",
+  "date": "2026-03-20",
+  "primaryModel": "anthropic/claude-sonnet-4-6",
   "contextUsed": 82,
   "contextLimit": 200,
   "contextPercent": 41,
   "cacheHitRate": 99,
-  "compactions": 6,
+  "compactions": 3,
+  "webSearches": 8,
   "status": "active",
-  "gatewayPort": 18789,
   "agents": [
     {
       "id": "main",
+      "label": "Main",
       "model": "claude-sonnet-4-6",
-      "status": "active"
+      "provider": "Anthropic",
+      "status": "active",
+      "usedToday": true,
+      "calls": 1,
+      "note": "하루 종일 실행 중"
     },
     {
       "id": "analyst",
+      "label": "Analyst",
       "model": "claude-sonnet-4-6",
-      "status": "ready"
+      "provider": "Anthropic",
+      "status": "standby",
+      "usedToday": false,
+      "calls": 0,
+      "note": "대기 중"
     },
     {
       "id": "strategist",
+      "label": "Strategist",
       "model": "claude-opus-4-6",
-      "status": "ready"
+      "provider": "Copilot",
+      "status": "standby",
+      "usedToday": false,
+      "calls": 0,
+      "note": "대기 중"
     },
     {
       "id": "executor",
+      "label": "Executor",
       "model": "gpt-5.4",
-      "status": "ready"
+      "provider": "CodeX",
+      "status": "standby",
+      "usedToday": false,
+      "calls": 0,
+      "note": "대기 중"
     },
     {
       "id": "researcher",
-      "model": "kimi-k2",
-      "status": "ready"
+      "label": "Researcher",
+      "model": "kimi-k2-thinking",
+      "provider": "Kimi",
+      "status": "standby",
+      "usedToday": false,
+      "calls": 0,
+      "note": "대기 중"
     },
     {
       "id": "casual",
+      "label": "Casual",
       "model": "gemini-flash",
-      "status": "ready"
+      "provider": "Copilot",
+      "status": "used",
+      "usedToday": true,
+      "calls": 3,
+      "note": "압축 3회 + 웹검색"
     }
-  ]
+  ],
+  "summary": {
+    "totalModels": 6,
+    "activeToday": 2,
+    "standby": 4
+  }
 }

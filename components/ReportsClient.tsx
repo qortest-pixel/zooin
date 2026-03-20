@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import UsageWidget from "./UsageWidget";
 
 type Report = {
   id: number;
@@ -125,8 +126,13 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
       </div>
 
       {/* ── REPORT LIST ── */}
-      <main className="max-w-4xl mx-auto px-5 py-6 space-y-3">
-        {filtered.length === 0 && (
+      <main className="max-w-4xl mx-auto px-5 py-6">
+        {/* AI 상태 위젯 */}
+        <div className="mb-6">
+          <UsageWidget />
+        </div>
+        <div className="space-y-3">
+        {filtered.length === 0 && ( // eslint-disable-line
           <div className="py-20 text-center text-gray-400">
             <div className="text-5xl mb-3">🗂️</div>
             <p className="text-sm">해당 카테고리에 리포트가 없습니다</p>
@@ -183,6 +189,7 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
             </article>
           );
         })}
+        </div>
       </main>
 
       {/* ── CHAT ── */}

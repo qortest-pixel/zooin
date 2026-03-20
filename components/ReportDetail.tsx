@@ -12,88 +12,83 @@ type Report = {
   content?: string;
 };
 
-const CAT_STYLE: Record<string, { pill: string; bar: string; icon: string }> = {
-  기획서:   { pill: "bg-violet-100 text-violet-700 border-violet-200",   bar: "bg-violet-500",  icon: "📋" },
-  아키텍처: { pill: "bg-blue-100   text-blue-700   border-blue-200",     bar: "bg-blue-500",    icon: "🏗️" },
-  자동화:   { pill: "bg-emerald-100 text-emerald-700 border-emerald-200", bar: "bg-emerald-500", icon: "⚡" },
-  결과보고: { pill: "bg-amber-100  text-amber-700  border-amber-200",    bar: "bg-amber-500",   icon: "📊" },
-  코드리뷰: { pill: "bg-teal-100   text-teal-700   border-teal-200",     bar: "bg-teal-500",    icon: "🔍" },
-  태스크:   { pill: "bg-orange-100 text-orange-700 border-orange-200",   bar: "bg-orange-500",  icon: "✅" },
+const CAT: Record<string, { color: string; bg: string; text: string; icon: string; gradient: string }> = {
+  기획서:   { color: "#8b5cf6", bg: "#f5f3ff", text: "#6d28d9", icon: "📋", gradient: "from-violet-600 to-purple-700" },
+  아키텍처: { color: "#3b82f6", bg: "#eff6ff", text: "#1d4ed8", icon: "🏗️", gradient: "from-blue-600 to-indigo-700" },
+  자동화:   { color: "#10b981", bg: "#ecfdf5", text: "#047857", icon: "⚡", gradient: "from-emerald-600 to-teal-700" },
+  결과보고: { color: "#f59e0b", bg: "#fffbeb", text: "#b45309", icon: "📊", gradient: "from-amber-500 to-orange-600" },
+  코드리뷰: { color: "#14b8a6", bg: "#f0fdfa", text: "#0f766e", icon: "🔍", gradient: "from-teal-600 to-cyan-700" },
+  태스크:   { color: "#f97316", bg: "#fff7ed", text: "#c2410c", icon: "✅", gradient: "from-orange-500 to-red-600" },
 };
 
 export default function ReportDetail({ report }: { report: Report }) {
-  const s = CAT_STYLE[report.category];
+  const cat = CAT[report.category];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f0] font-sans">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
+    <div className="min-h-screen bg-gray-50 font-sans antialiased">
+      {/* Nav */}
+      <nav className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-5 h-14 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold shadow">Z</div>
-            <span className="font-bold text-gray-900 text-[15px]">zooin</span>
+          <a href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-700 flex items-center justify-center text-white font-black text-xs shadow-sm">Z</div>
+            <span className="font-bold text-gray-900 text-sm">zooin Reports</span>
           </a>
-          <a href="/" className="text-xs text-gray-400 hover:text-gray-700 transition-colors flex items-center gap-1">
-            ← 목록으로
+          <a href="/" className="text-xs text-gray-400 hover:text-gray-700 flex items-center gap-1 transition-colors">
+            ← 전체 목록
           </a>
         </div>
-      </header>
+      </nav>
 
-      {/* Top color bar */}
-      <div className={`h-1 w-full ${s?.bar ?? "bg-gray-300"}`} />
+      {/* Hero header */}
+      <div className={`bg-gradient-to-br ${cat?.gradient ?? "from-gray-700 to-gray-900"}`}>
+        <div className="max-w-3xl mx-auto px-5 py-10">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-xs font-mono bg-white/20 text-white px-2 py-0.5 rounded">
+              #{String(report.id).padStart(3, "0")}
+            </span>
+            <span className="text-xs font-semibold bg-white/20 text-white px-2.5 py-0.5 rounded-full">
+              {cat?.icon} {report.category}
+            </span>
+            <span className="text-xs text-white/60 font-mono ml-auto">{report.date}</span>
+          </div>
+          <h1 className="text-white text-xl sm:text-2xl font-bold leading-snug mb-3">{report.title}</h1>
+          <p className="text-white/70 text-sm leading-relaxed">{report.summary}</p>
+          <div className="flex flex-wrap gap-1.5 mt-4">
+            {report.tags.map(t => (
+              <span key={t} className="text-[11px] bg-white/15 text-white/80 border border-white/20 rounded-full px-2.5 py-0.5">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Content */}
-      <main className="max-w-3xl mx-auto px-5 py-10">
-        {/* Meta */}
-        <div className="flex items-center gap-2 flex-wrap mb-4">
-          <span className="text-xs font-mono text-gray-400 bg-white border border-gray-200 px-2 py-0.5 rounded">
-            #{String(report.id).padStart(3, "0")}
-          </span>
-          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${s?.pill ?? "bg-gray-100 text-gray-500 border-gray-200"}`}>
-            {s?.icon} {report.category}
-          </span>
-          <span className="text-xs text-gray-400 ml-auto font-mono">{report.date}</span>
-        </div>
-
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 leading-snug">{report.title}</h1>
-        <p className="text-gray-500 text-sm mb-5 leading-relaxed border-l-2 border-gray-200 pl-3">{report.summary}</p>
-
-        <div className="flex flex-wrap gap-1.5 mb-8">
-          {report.tags.map((tag) => (
-            <span key={tag} className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md px-2 py-0.5">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        {/* Main content */}
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-          <div className="p-6 sm:p-8">
+      <main className="max-w-3xl mx-auto px-5 py-8">
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-6 sm:p-10">
             <div className="prose prose-gray max-w-none
-              prose-headings:font-bold prose-headings:text-gray-900
-              prose-h1:text-xl prose-h1:border-b prose-h1:border-gray-100 prose-h1:pb-2 prose-h1:mb-4
-              prose-h2:text-lg prose-h2:mt-8 prose-h2:mb-3
-              prose-h3:text-base prose-h3:mt-6 prose-h3:mb-2
-              prose-p:text-gray-600 prose-p:leading-relaxed prose-p:text-sm
-              prose-li:text-gray-600 prose-li:leading-relaxed prose-li:text-sm
+              prose-headings:font-bold prose-headings:text-gray-900 prose-headings:tracking-tight
+              prose-h1:text-xl prose-h1:border-b prose-h1:border-gray-100 prose-h1:pb-3 prose-h1:mb-5
+              prose-h2:text-lg prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-gray-800
+              prose-h3:text-base prose-h3:mt-6 prose-h3:mb-2 prose-h3:text-gray-700
+              prose-p:text-gray-600 prose-p:leading-relaxed prose-p:text-[14px]
+              prose-li:text-gray-600 prose-li:leading-relaxed prose-li:text-[14px]
               prose-strong:text-gray-800 prose-strong:font-semibold
-              prose-code:bg-gray-100 prose-code:text-violet-700 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-xs
-              prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:text-xs
-              prose-table:text-sm prose-th:bg-gray-50 prose-th:text-gray-700 prose-th:font-semibold prose-td:text-gray-600
-              prose-blockquote:border-l-4 prose-blockquote:border-violet-300 prose-blockquote:text-gray-500 prose-blockquote:italic
-              prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline">
-              {report.content
-                ? <ReactMarkdown>{report.content}</ReactMarkdown>
-                : <p>{report.summary}</p>}
+              prose-code:bg-gray-100 prose-code:text-violet-700 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[12px] prose-code:font-mono
+              prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:text-[12px] prose-pre:leading-relaxed
+              prose-table:text-sm prose-th:bg-gray-50 prose-th:text-gray-700 prose-th:font-semibold prose-th:text-left prose-td:text-gray-600 prose-td:py-2
+              prose-blockquote:border-l-4 prose-blockquote:border-violet-300 prose-blockquote:text-gray-500 prose-blockquote:italic prose-blockquote:bg-violet-50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
+              prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
+              prose-hr:border-gray-100">
+              {report.content ? <ReactMarkdown>{report.content}</ReactMarkdown> : <p>{report.summary}</p>}
             </div>
           </div>
         </div>
 
-        {/* Bottom nav */}
-        <div className="mt-8 flex justify-center">
-          <a href="/" className="text-sm text-gray-400 hover:text-violet-600 transition-colors flex items-center gap-1 py-2 px-4 rounded-lg hover:bg-white border border-transparent hover:border-gray-200">
-            ← 전체 리포트 보기
+        <div className="mt-6 flex justify-between items-center">
+          <a href="/" className="text-xs text-gray-400 hover:text-violet-600 transition-colors flex items-center gap-1 py-2 px-3 rounded-lg hover:bg-white border border-transparent hover:border-gray-200">
+            ← 전체 목록으로
           </a>
+          <span className="text-[10px] text-gray-300 font-mono">zooin Reports #{String(report.id).padStart(3, "0")}</span>
         </div>
       </main>
     </div>

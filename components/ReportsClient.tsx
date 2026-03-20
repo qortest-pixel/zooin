@@ -52,20 +52,33 @@ export default function ReportsClient({ reports: initialReports }: { reports: Re
     setEditMode(false);
   }
 
-  function sendChat() {
+  async function sendChat() {
     if (!chatInput.trim()) return;
     const userMsg = chatInput.trim();
     setChatMessages((prev) => [...prev, { role: "user", text: userMsg }]);
     setChatInput("");
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg }),
+      });
+      const data = await res.json();
       setChatMessages((prev) => [
         ...prev,
         {
           role: "ai",
-          text: "요청을 받았습니다. 현재 데모 모드라 실제 수정은 Mac mini의 OpenClaw와 연동 후 가능합니다. 곧 지원 예정이에요!",
+          text: data.ok
+            ? "✅ 전송됐습니다! 텔레그램으로 확인해보세요."
+            : `❌ 오류: ${data.error}`,
         },
       ]);
-    }, 800);
+    } catch {
+      setChatMessages((prev) => [
+        ...prev,
+        { role: "ai", text: "❌ 네트워크 오류가 발생했습니다." },
+      ]);
+    }
   }
 
   return (

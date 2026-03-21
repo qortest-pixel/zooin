@@ -177,5 +177,20 @@
       "AI"
     ],
     "content": "# AI 자동화 마스터 로드맵\n\n## 5단계\n1. ✅ 멀티 에이전트 라우팅\n2. 📋 워크플로우 자동화 (Lobster)\n3. 📋 메모리 고도화\n4. 📋 외부 시스템 연동\n5. 📋 완전 자율 에이전트\n\n## 운영 원칙\n- 결제·대량삭제 외 전권 자율\n- 뉴런 체인: 목표 → 분해 → 체인 → 보고"
+  },
+  {
+    "id": 13,
+    "title": "AI 팀 협업 시스템 — 멀티모델 실사용 구조",
+    "summary": "5개 모델(Opus/Sonnet/GPT-5.4/GPT-5-mini)이 실제 팀처럼 협업하는 Supervisor-Worker 시스템",
+    "category": "아키텍처",
+    "date": "2026-03-21",
+    "tags": [
+      "멀티에이전트",
+      "협업",
+      "GPT-5.4",
+      "Claude",
+      "토큰절약"
+    ],
+    "content": "# AI 팀 협업 시스템 — 멀티모델 실사용 협업 구조\n\n## 개요\n5개 AI 모델이 실제 팀처럼 소통하며 협업하는 시스템. 사람 팀을 모방한 Supervisor-Worker 패턴.\n\n## 팀 구성\n| 팀원 | 모델 | 역할 |\n|-----|------|------|\n| 🎯 PM | Claude Opus | 목표 분해, 역할 배분, 최종 취합 |\n| 🔍 Analyst | Claude Sonnet | 리서치, 데이터 분석 |\n| ⚡ Developer | GPT-5.4 | 코드 작성, 기술 구현 |\n| ✅ Reviewer | Claude Sonnet | 결과 검토, 품질 체크 |\n| 📝 Reporter | GPT-5-mini | 요약 정리, 최종 보고서 |\n\n## 협업 흐름\n```\n목표 입력\n→ [PM] 목표 분해 + 역할 배분 (Claude Opus)\n→ [Analyst] 현황 분석 (Claude Sonnet)\n→ [Developer] 기술 구현 (GPT-5.4)\n→ [Reviewer] 품질 검토 (Claude Sonnet)\n→ [Reporter] 최종 보고서 (GPT-5-mini)\n→ 결과 저장 + 사용자 전달\n```\n\n## 토큰 절약 전략\n- PM: 1024 토큰 (목표 분해만)\n- Analyst: 2048 토큰\n- Developer: 2048 토큰\n- Reviewer: 512 토큰 (핵심 피드백만)\n- Reporter: 512 토큰 (3~5줄 요약)\n- **총 약 6,500 토큰** → 단일 에이전트 대비 역할 분산 + 품질 향상\n\n## 실제 테스트 결과\n목표: \"메타 광고 자동화 시스템 기획\"\n- PM → Analyst → Developer → Reviewer → Reporter 전 단계 성공\n- 총 소요: 약 2분\n- 최종 보고: Meta Marketing API v21.0 기반 자동화 시스템 설계안 도출\n\n## 작업 처리 원칙 (앞으로 모든 작업)\n1. **세부 기획** — 태스크 분해, 병렬/순차 구분\n2. **모델별 할당** — 역할에 맞는 모델 배치\n3. **토큰 절약** — 캐시 활용, 경량 모델 우선, max_tokens 제한\n\n## 실행 방법\n```bash\npython3 ~/.openclaw/workspace/collab-system/team_collab.py \"목표\"\n```\n"
   }
 ]

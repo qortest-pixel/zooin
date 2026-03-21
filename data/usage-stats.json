@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-21T23:56:05.943867+09:00",
-  "updatedAtKST": "2026-03-21 23:56 KST",
-  "date": "2026-03-21",
+  "updatedAt": "2026-03-22T00:01:06.944676+09:00",
+  "updatedAtKST": "2026-03-22 00:01 KST",
+  "date": "2026-03-22",
   "primaryModel": "anthropic/claude-sonnet-4-6",
   "contextUsed": 82,
   "contextLimit": 200,
   "contextPercent": 41,
   "cacheHitRate": 99,
-  "compactions": 4,
-  "webSearches": 14,
+  "compactions": 2,
+  "webSearches": 8,
   "status": "active",
   "agents": [
     {
@@ -68,8 +68,8 @@
       "provider": "Copilot",
       "status": "used",
       "usedToday": true,
-      "calls": 4,
-      "note": "압축 4회 + 웹검색"
+      "calls": 2,
+      "note": "압축 0회 + 웹검색"
     }
   ],
   "summary": {

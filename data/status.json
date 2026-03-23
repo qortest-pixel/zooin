@@ -1,0 +1,162 @@
+{
+  "lastUpdated": "2026-03-24T01:41:00+09:00",
+  "projects": [
+    {
+      "id": "blogsmith-content",
+      "name": "📝 콘텐츠 AI (Blogsmith)",
+      "status": "mvp-done",
+      "progress": 40,
+      "description": "키워드 → SEO 블로그 글 자동 생성",
+      "repo": "https://github.com/qortest-pixel/blogsmith",
+      "url": null,
+      "tasks": [
+        {
+          "name": "MVP 개발",
+          "status": "done",
+          "date": "2026-03-23"
+        },
+        {
+          "name": "GitHub 배포",
+          "status": "done",
+          "date": "2026-03-23"
+        },
+        {
+          "name": "Vercel 라이브",
+          "status": "pending"
+        },
+        {
+          "name": "SNS 콘텐츠 추가",
+          "status": "todo"
+        },
+        {
+          "name": "인증 + 결제",
+          "status": "todo"
+        },
+        {
+          "name": "12채널 론칭",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "id": "blogsmith-biz",
+      "name": "🤖 비즈니스 AI",
+      "status": "planned",
+      "progress": 0,
+      "description": "카톡 챗봇 + 전화 AI + 예약 관리",
+      "tasks": [
+        {
+          "name": "시장조사",
+          "status": "todo"
+        },
+        {
+          "name": "MVP 개발",
+          "status": "todo"
+        },
+        {
+          "name": "카카오톡 연동",
+          "status": "todo"
+        },
+        {
+          "name": "배포",
+          "status": "todo"
+        }
+      ],
+      "url": null,
+      "repo": null
+    },
+    {
+      "id": "blogsmith-ecom",
+      "name": "🛒 이커머스 AI",
+      "status": "planned",
+      "progress": 0,
+      "description": "상품설명 생성 + 리뷰 분석 + CS 자동화",
+      "tasks": [
+        {
+          "name": "시장조사",
+          "status": "todo"
+        },
+        {
+          "name": "MVP 개발",
+          "status": "todo"
+        },
+        {
+          "name": "스마트스토어 연동",
+          "status": "todo"
+        },
+        {
+          "name": "배포",
+          "status": "todo"
+        }
+      ],
+      "url": null,
+      "repo": null
+    },
+    {
+      "id": "blogsmith-school",
+      "name": "📚 AI 스쿨",
+      "status": "planned",
+      "progress": 0,
+      "description": "AI 활용법 교육 + 커뮤니티",
+      "tasks": [
+        {
+          "name": "커리큘럼 설계",
+          "status": "todo"
+        },
+        {
+          "name": "플랫폼 개발",
+          "status": "todo"
+        },
+        {
+          "name": "콘텐츠 제작",
+          "status": "todo"
+        },
+        {
+          "name": "배포",
+          "status": "todo"
+        }
+      ],
+      "url": null,
+      "repo": null
+    },
+    {
+      "id": "infra",
+      "name": "⚙️ 인프라",
+      "status": "in-progress",
+      "progress": 65,
+      "description": "멀티에이전트, 크론, 키워드 도구",
+      "tasks": [
+        {
+          "name": "멀티에이전트 5모델",
+          "status": "done"
+        },
+        {
+          "name": "뉴런 체인",
+          "status": "done"
+        },
+        {
+          "name": "트렌드 크론",
+          "status": "done"
+        },
+        {
+          "name": "키워드 도구",
+          "status": "done"
+        },
+        {
+          "name": "zooin 사이트",
+          "status": "done"
+        },
+        {
+          "name": "Gmail/Calendar",
+          "status": "todo"
+        },
+        {
+          "name": "오전 브리핑",
+          "status": "todo"
+        }
+      ],
+      "url": null,
+      "repo": null
+    }
+  ]
+}

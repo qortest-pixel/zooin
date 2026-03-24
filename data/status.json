@@ -1,14 +1,14 @@
 {
-  "lastUpdated": "2026-03-24T01:41:00+09:00",
+  "lastUpdated": "2026-03-24T10:23:32.283057+09:00",
   "projects": [
     {
       "id": "blogsmith-content",
       "name": "📝 콘텐츠 AI (Blogsmith)",
       "status": "mvp-done",
-      "progress": 40,
+      "progress": 45,
       "description": "키워드 → SEO 블로그 글 자동 생성",
       "repo": "https://github.com/qortest-pixel/blogsmith",
-      "url": null,
+      "url": "https://blogsmith-git-main-qorckddn123456-3796s-projects.vercel.app",
       "tasks": [
         {
           "name": "MVP 개발",
@@ -22,7 +22,8 @@
         },
         {
           "name": "Vercel 라이브",
-          "status": "pending"
+          "status": "pending",
+          "note": "배포 트리거 완료, 확인 중"
         },
         {
           "name": "SNS 콘텐츠 추가",
@@ -40,17 +41,18 @@
     },
     {
       "id": "blogsmith-biz",
-      "name": "🤖 비즈니스 AI",
-      "status": "planned",
-      "progress": 0,
+      "name": "🤖 비즈니스 AI (BizBot)",
+      "status": "in-progress",
+      "progress": 10,
       "description": "카톡 챗봇 + 전화 AI + 예약 관리",
       "tasks": [
         {
-          "name": "시장조사",
-          "status": "todo"
+          "name": "MVP 개발 착수",
+          "status": "in-progress",
+          "note": "Executor 작업중"
         },
         {
-          "name": "MVP 개발",
+          "name": "GitHub + Vercel 배포",
           "status": "todo"
         },
         {
@@ -58,7 +60,7 @@
           "status": "todo"
         },
         {
-          "name": "배포",
+          "name": "12채널 론칭",
           "status": "todo"
         }
       ],
@@ -67,17 +69,18 @@
     },
     {
       "id": "blogsmith-ecom",
-      "name": "🛒 이커머스 AI",
-      "status": "planned",
-      "progress": 0,
+      "name": "🛒 이커머스 AI (ShopAI)",
+      "status": "in-progress",
+      "progress": 10,
       "description": "상품설명 생성 + 리뷰 분석 + CS 자동화",
       "tasks": [
         {
-          "name": "시장조사",
-          "status": "todo"
+          "name": "MVP 개발 착수",
+          "status": "in-progress",
+          "note": "Executor 작업중"
         },
         {
-          "name": "MVP 개발",
+          "name": "GitHub + Vercel 배포",
           "status": "todo"
         },
         {
@@ -85,7 +88,7 @@
           "status": "todo"
         },
         {
-          "name": "배포",
+          "name": "12채널 론칭",
           "status": "todo"
         }
       ],

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-24T10:23:32.283057+09:00",
+  "lastUpdated": "2026-03-24T10:27:21.289239+09:00",
   "projects": [
     {
       "id": "blogsmith-content",
@@ -70,17 +70,22 @@
     {
       "id": "blogsmith-ecom",
       "name": "🛒 이커머스 AI (ShopAI)",
-      "status": "in-progress",
-      "progress": 10,
+      "status": "mvp-done",
+      "progress": 40,
       "description": "상품설명 생성 + 리뷰 분석 + CS 자동화",
       "tasks": [
         {
-          "name": "MVP 개발 착수",
-          "status": "in-progress",
-          "note": "Executor 작업중"
+          "name": "MVP 개발 완료",
+          "status": "done",
+          "date": "2026-03-24"
         },
         {
-          "name": "GitHub + Vercel 배포",
+          "name": "GitHub 배포",
+          "status": "done",
+          "date": "2026-03-24"
+        },
+        {
+          "name": "Vercel 배포",
           "status": "todo"
         },
         {
@@ -93,7 +98,7 @@
         }
       ],
       "url": null,
-      "repo": null
+      "repo": "https://github.com/qortest-pixel/shopai"
     },
     {
       "id": "blogsmith-school",

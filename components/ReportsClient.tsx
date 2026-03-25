@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import UsageWidget from "./UsageWidget";
+import { useState, useMemo } from "react";
 
 type Report = {
   id: number;
@@ -35,6 +34,52 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
 
   const filtered = activeTab === "전체" ? reports : reports.filter((r) => r.category === activeTab);
   const cnt = (c: string) => (c === "전체" ? reports.length : reports.filter((r) => r.category === c).length);
+
+  // Sort by date (newest first), then by id (newest first) within same date
+  const sorted = useMemo(() => {
+    return [...filtered].sort((a, b) => {
+      const dateCompare = b.date.localeCompare(a.date);
+      if (dateCompare !== 0) return dateCompare;
+      return b.id - a.id;
+    });
+  }, [filtered]);
+
+  // Group by date
+  const grouped = useMemo(() => {
+    const groups: { date: string; reports: Report[] }[] = [];
+    let currentDate = "";
+    for (const r of sorted) {
+      if (r.date !== currentDate) {
+        currentDate = r.date;
+        groups.push({ date: r.date, reports: [r] });
+      } else {
+        groups[groups.length - 1].reports.push(r);
+      }
+    }
+    return groups;
+  }, [sorted]);
+
+  // Format date label
+  const formatDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr + "T00:00:00+09:00");
+      const days = ["일", "월", "화", "수", "목", "금", "토"];
+      const month = d.getMonth() + 1;
+      const day = d.getDate();
+      const dayName = days[d.getDay()];
+      const today = new Date();
+      const todayStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
+      const yesterdayStr = `${yesterday.getFullYear()}-${String(yesterday.getMonth()+1).padStart(2,"0")}-${String(yesterday.getDate()).padStart(2,"0")}`;
+
+      if (dateStr === todayStr) return `오늘 · ${month}월 ${day}일 (${dayName})`;
+      if (dateStr === yesterdayStr) return `어제 · ${month}월 ${day}일 (${dayName})`;
+      return `${month}월 ${day}일 (${dayName})`;
+    } catch {
+      return dateStr;
+    }
+  };
 
   async function send() {
     const msg = chatInput.trim();
@@ -127,68 +172,80 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
 
       {/* ── REPORT LIST ── */}
       <main className="max-w-4xl mx-auto px-5 py-6">
-        {/* AI 상태 위젯 */}
-        <div className="mb-6">
-          <UsageWidget />
-        </div>
-        <div className="space-y-3">
-        {filtered.length === 0 && ( // eslint-disable-line
+        {sorted.length === 0 && (
           <div className="py-20 text-center text-gray-400">
             <div className="text-5xl mb-3">🗂️</div>
             <p className="text-sm">해당 카테고리에 리포트가 없습니다</p>
           </div>
         )}
 
-        {filtered.map((r, i) => {
-          const cat = CAT[r.category];
-          return (
-            <article key={r.id} onClick={() => window.open(`/reports/${r.id}`, "_blank")}
-              className={`group bg-white rounded-xl border border-gray-200 border-l-4 ${cat?.border ?? "border-l-gray-300"} hover:shadow-md hover:border-gray-300 transition-all cursor-pointer flex gap-0`}>
-
-              {/* INDEX */}
-              <div className="flex items-start justify-center w-12 pt-5 shrink-0">
-                <span className="text-[11px] font-mono text-gray-300 font-semibold">
-                  {String(filtered.length - i).padStart(2, "0")}
-                </span>
+        <div className="space-y-8">
+        {grouped.map((group) => (
+          <section key={group.date}>
+            {/* Date Header */}
+            <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-gray-800">{formatDate(group.date)}</span>
+                <span className="text-[11px] text-gray-400 bg-gray-100 rounded-full px-2 py-0.5 font-medium">{group.reports.length}건</span>
               </div>
+              <div className="flex-1 h-px bg-gray-200" />
+              <span className="text-[11px] text-gray-400 font-mono">{group.date}</span>
+            </div>
 
-              {/* BODY */}
-              <div className="flex-1 py-4 pr-5">
-                {/* Category + Date */}
-                <div className="flex items-center justify-between mb-2">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                    style={{ background: cat?.bg, color: cat?.text }}>
-                    {cat?.icon} {r.category}
-                  </span>
-                  <span className="text-[11px] text-gray-400 font-mono">{r.date}</span>
-                </div>
+            {/* Reports in this date */}
+            <div className="space-y-3">
+            {group.reports.map((r) => {
+              const cat = CAT[r.category];
+              return (
+                <article key={r.id} onClick={() => window.open(`/reports/${r.id}`, "_blank")}
+                  className={`group bg-white rounded-xl border border-gray-200 border-l-4 ${cat?.border ?? "border-l-gray-300"} hover:shadow-md hover:border-gray-300 transition-all cursor-pointer flex gap-0`}>
 
-                {/* Title */}
-                <h2 className="text-[15px] font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-violet-700 transition-colors">
-                  {r.title}
-                </h2>
-
-                {/* Summary */}
-                <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-3">
-                  {r.summary}
-                </p>
-
-                {/* Tags + Arrow */}
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap gap-1">
-                    {r.tags.slice(0, 4).map(t => (
-                      <span key={t} className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{t}</span>
-                    ))}
-                    {r.tags.length > 4 && <span className="text-[10px] text-gray-300">+{r.tags.length - 4}</span>}
+                  {/* INDEX */}
+                  <div className="flex items-start justify-center w-12 pt-5 shrink-0">
+                    <span className="text-[11px] font-mono text-gray-300 font-semibold">
+                      #{String(r.id).padStart(2, "0")}
+                    </span>
                   </div>
-                  <span className="text-[11px] text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity font-medium shrink-0 ml-2">
-                    보기 →
-                  </span>
-                </div>
-              </div>
-            </article>
-          );
-        })}
+
+                  {/* BODY */}
+                  <div className="flex-1 py-4 pr-5">
+                    {/* Category */}
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                        style={{ background: cat?.bg, color: cat?.text }}>
+                        {cat?.icon} {r.category}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-[15px] font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-violet-700 transition-colors">
+                      {r.title}
+                    </h2>
+
+                    {/* Summary */}
+                    <p className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-3">
+                      {r.summary}
+                    </p>
+
+                    {/* Tags + Arrow */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap gap-1">
+                        {r.tags.slice(0, 4).map(t => (
+                          <span key={t} className="text-[10px] text-gray-400 bg-gray-100 rounded px-1.5 py-0.5">{t}</span>
+                        ))}
+                        {r.tags.length > 4 && <span className="text-[10px] text-gray-300">+{r.tags.length - 4}</span>}
+                      </div>
+                      <span className="text-[11px] text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity font-medium shrink-0 ml-2">
+                        보기 →
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+            </div>
+          </section>
+        ))}
         </div>
       </main>
 

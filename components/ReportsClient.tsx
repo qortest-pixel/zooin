@@ -114,6 +114,9 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <a href="/tasks" className="flex items-center gap-1 text-xs text-white bg-amber-500 hover:bg-amber-600 px-2.5 py-1.5 rounded-lg font-medium transition-all shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse inline-block" /> 진행 중 작업
+            </a>
             <a href="/crons" className="hidden sm:flex items-center gap-1 text-xs text-gray-500 hover:text-gray-800 border border-gray-200 hover:border-gray-300 px-2.5 py-1.5 rounded-lg transition-all">
               <span>⚙️</span> 크론
             </a>

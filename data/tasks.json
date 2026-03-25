@@ -1,0 +1,62 @@
+[
+  {
+    "id": "t1",
+    "status": "in-progress",
+    "title": "AI 트렌드 일일 보고 크론 재설정",
+    "assignee": "🔭 김태리 연구원 + ⚡ 한도윤 CTO",
+    "model": "Sonnet (수집) + web_search",
+    "started": "2026-03-25 18:30",
+    "eta": "10분",
+    "progress": 60
+  },
+  {
+    "id": "t2",
+    "status": "in-progress",
+    "title": "멀티모델 분배 설정 (Opus/Sonnet/GPT-5.4/로컬)",
+    "assignee": "⚡ 한도윤 CTO + 🔧 류하나",
+    "model": "openclaw.json 설정 변경",
+    "started": "2026-03-25 18:30",
+    "eta": "10분",
+    "progress": 40
+  },
+  {
+    "id": "t3",
+    "status": "in-progress",
+    "title": "zooin 자동 아카이빙 파이프라인",
+    "assignee": "💻 장우석 풀스택",
+    "model": "이벤트 드리븐 자동 push",
+    "started": "2026-03-25 18:30",
+    "eta": "10분",
+    "progress": 30
+  },
+  {
+    "id": "t4",
+    "status": "done",
+    "title": "AI 가상기업 슬랙 채널 9개 생성 + 임원 23명 배치",
+    "assignee": "🎩 이준호 비서실장",
+    "model": "Opus",
+    "started": "2026-03-25 18:18",
+    "completed": "2026-03-25 18:22",
+    "progress": 100
+  },
+  {
+    "id": "t5",
+    "status": "done",
+    "title": "zooin 날짜별 최신순 정렬 + AI 사용현황 제거",
+    "assignee": "💻 장우석 풀스택",
+    "model": "Opus",
+    "started": "2026-03-25 18:25",
+    "completed": "2026-03-25 18:28",
+    "progress": 100
+  },
+  {
+    "id": "t6",
+    "status": "done",
+    "title": "전 부서 미션 디스패치 + 부서별 회의 진행",
+    "assignee": "전 부서 23명",
+    "model": "Opus (코디네이터)",
+    "started": "2026-03-25 18:35",
+    "completed": "2026-03-25 18:50",
+    "progress": 100
+  }
+]

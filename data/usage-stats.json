@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-26T18:35:46.463948+09:00",
-  "updatedAtKST": "2026-03-26 18:35 KST",
+  "updatedAt": "2026-03-26T18:40:47.531459+09:00",
+  "updatedAtKST": "2026-03-26 18:40 KST",
   "date": "2026-03-26",
   "primaryModel": "anthropic/claude-sonnet-4-6",
   "contextUsed": 82,
@@ -69,7 +69,7 @@
       "status": "used",
       "usedToday": true,
       "calls": 2,
-      "note": "압축 0회 + 웹검색"
+      "note": "압축 2회 + 웹검색"
     }
   ],
   "summary": {

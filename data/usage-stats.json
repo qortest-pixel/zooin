@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-26T23:57:08.310767+09:00",
-  "updatedAtKST": "2026-03-26 23:57 KST",
-  "date": "2026-03-26",
+  "updatedAt": "2026-03-27T00:02:09.519353+09:00",
+  "updatedAtKST": "2026-03-27 00:02 KST",
+  "date": "2026-03-27",
   "primaryModel": "anthropic/claude-sonnet-4-6",
   "contextUsed": 82,
   "contextLimit": 200,
   "contextPercent": 41,
   "cacheHitRate": 99,
   "compactions": 2,
-  "webSearches": 37,
+  "webSearches": 8,
   "status": "active",
   "agents": [
     {
@@ -69,7 +69,7 @@
       "status": "used",
       "usedToday": true,
       "calls": 2,
-      "note": "압축 2회 + 웹검색"
+      "note": "압축 0회 + 웹검색"
     }
   ],
   "summary": {

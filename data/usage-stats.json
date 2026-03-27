@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-03-27T12:29:45.698234+09:00",
-  "updatedAtKST": "2026-03-27 12:29 KST",
+  "updatedAt": "2026-03-27T12:34:46.647176+09:00",
+  "updatedAtKST": "2026-03-27 12:34 KST",
   "date": "2026-03-27",
   "primaryModel": "anthropic/claude-sonnet-4-6",
   "contextUsed": 82,
@@ -8,7 +8,7 @@
   "contextPercent": 41,
   "cacheHitRate": 99,
   "compactions": 2,
-  "webSearches": 16,
+  "webSearches": 20,
   "status": "active",
   "agents": [
     {

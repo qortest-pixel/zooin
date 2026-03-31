@@ -1,5 +1,18 @@
 [
   {
+    "id": 36,
+    "title": "2026-03-31 일일 작업 보고",
+    "summary": "2026-03-31 AI 비서 일일 작업 내역 자동 정리",
+    "category": "결과보고",
+    "date": "2026-03-31",
+    "tags": [
+      "일일보고",
+      "자동화",
+      "AI비서"
+    ],
+    "content": "# 2026-03-31 일일 작업 보고\n\n> AI 비서 자동 생성\n\n## 작업 요약\n2026년 3월 31일의 대화 내용을 요약합니다.\n\n* LiveSessionModelSwitchError로 오류가 발생했습니다.\n* Live session model switch가 requested되었습니다. (anthropic/claude-opus-4-6)\n* 오류가 발생한 reason은 LiveSessionModelSwitchError입니다.\n* 오류가 발생한 reason은 LiveSessionModelSwitchError로, cached=true로 인해 발생했습니다.\n\n---\n*자동 생성 by OpenClaw AI 비서*"
+  },
+  {
     "id": 35,
     "title": "🎬 FB 바이럴 경험재 상품 기획서 — 5팀 교차 피드백 최종",
     "summary": "생활백서 스타일 비포/애프터 경험재 10개 분석 → 5팀 피드백 → 최종 4개 확정 (드릴브러시·털롤러·발세척기·채소쵸퍼)",

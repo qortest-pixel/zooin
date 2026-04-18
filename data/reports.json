@@ -1,5 +1,19 @@
 [
   {
+    "id": 50,
+    "title": "2026-04-18 릴스 대본 자동 생성",
+    "summary": "뷰티 카테고리 릴스 대본 자동 생성 및 텔레그램 알림 완료",
+    "category": "자동화",
+    "date": "2026-04-18",
+    "tags": [
+      "릴스",
+      "인스타",
+      "자동화",
+      "뷰티"
+    ],
+    "content": "{\n  \"title\": \"모공 넓어 보이는 사람, 아침에 이것만 바꾸세요\",\n  \"hook\": \"아침 습관 때문에 모공이 더 넓어 보인다는 거, 알고 있었나요?\",\n  \"scenes\": [\n    {\n      \"narration\": \"세수할 때 뜨거운 물부터 끊으세요. 뜨거운 물은 피부를 자극해서 모공이 더 도드라져 보일 수 있어요.\",\n      \"duration\": 7,\n      \"image_prompt\": \"A Korean woman in a bright bathroom washing her face with lukewarm water, skincare aesthetic, clean minimal interior, soft natural morning light, realistic beauty editorial style\"\n    },\n    {\n      \"narration\": \"아침에도 가볍게 클렌징하세요. 밤사이 올라온 유분을 정리해야 메이크업도 덜 무너지고 모공도 덜 부각돼요.\",\n      \"duration\": 7,\n      \"image_prompt\": \"Close-up of a woman gently cleansing her face with mild foam cleanser in the morning, fresh skin texture, soft sunlight, realistic skincare commercial photography\"\n    },\n    {\n      \"narration\": \"수건으로 문지르지 말고 톡톡 눌러 닦으세요. 강한 마찰은 피부 결을 거칠어 보이게 만들어요.\",\n      \"duration\": 6,\n      \"image_prompt\": \"Woman gently patting her face dry with a soft towel, close-up beauty shot, healthy skin, warm morning lighting, elegant and realistic lifestyle photo\"\n    },\n    {\n      \"narration\": \"아침 수분 충전은 필수예요. 수분이 부족하면 피부가 더 울퉁불퉁해 보이면서 모공이 강조돼요.\",\n      \"duration\": 7,\n      \"image_prompt\": \"A woman applying hydrating serum and light moisturizer in front of a mirror, dewy skin, pastel skincare products, clean beauty aesthetic, realistic editorial image\"\n    },\n    {\n      \"narration\": \"마지막으로 선크림까지 꼭 바르세요. 자외선은 피부 탄력을 떨어뜨려서 모공 고민을 더 키울 수 있어요.\",\n      \"duration\": 7,\n      \"image_prompt\": \"Woman applying sunscreen on her face in the morning, glowing natural skin, modern bathroom, soft daylight, realistic beauty campaign photography\"\n    }\n  ],\n  \"cta\": \"모공 고민 있다면 저장해두고, 더 쉬운 뷰티 꿀팁 보고 싶으면 팔로우하세요.\",\n  \"caption\": \"모공이 넓어 보인다면 비싼 제품보다 아침 습관부터 점검해보세요. 작은 습관 변화만으로도 피부 표현이 달라질 수 있어요. 저장해두고 내일부터 바로 실천해보세요.\\n\\n#모공관리 #모공축소 #피부관리 #뷰티꿀팁 #스킨케어루틴 #아침루틴 #피부좋아지는법 #뷰티릴스 #여드름피부관리 #셀프케어\",\n  \"total_duration\": 34\n}"
+  },
+  {
     "id": 49,
     "title": "2026-04-17 일일 작업 보고",
     "summary": "2026-04-17 AI 비서 일일 작업 내역 자동 정리",

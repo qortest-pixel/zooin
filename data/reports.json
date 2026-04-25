@@ -1,5 +1,18 @@
 [
   {
+    "id": 56,
+    "title": "2026-04-25 일일 작업 보고",
+    "summary": "2026-04-25 AI 비서 일일 작업 내역 자동 정리",
+    "category": "결과보고",
+    "date": "2026-04-25",
+    "tags": [
+      "일일보고",
+      "자동화",
+      "AI비서"
+    ],
+    "content": "# 2026-04-25 일일 작업 보고\n\n> AI 비서 자동 생성\n\n## 작업 요약\n2026년 4월 25일의 대화 내용을 요약합니다.\n\n*   OpenCLaw의 캐anvas가 성공적으로 호스트가-mounted되었습니다. (http://127.0.0.1:18789/__openclaw__/canvas/)\n*   OpenCLaw의 플러그인은 ACXP runtime backend를 성공적으로 등록했습니다. (cwd: /Users/baegchang-u/.openclaw/workspace)\n\n---\n*자동 생성 by OpenClaw AI 비서*"
+  },
+  {
     "id": 55,
     "title": "2026-04-24 일일 작업 보고",
     "summary": "2026-04-24 AI 비서 일일 작업 내역 자동 정리",

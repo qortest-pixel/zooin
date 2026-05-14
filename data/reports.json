@@ -1,5 +1,18 @@
 [
   {
+    "id": 67,
+    "title": "2026-05-14 일일 작업 보고",
+    "summary": "2026-05-14 AI 비서 일일 작업 내역 자동 정리",
+    "category": "결과보고",
+    "date": "2026-05-14",
+    "tags": [
+      "일일보고",
+      "자동화",
+      "AI비서"
+    ],
+    "content": "# 2026-05-14 일일 작업 보고\n\n> AI 비서 자동 생성\n\n## 작업 요약\n2026년 5월 14일의 대화 내용을 요약합니다.\n\n*   22:22:46: OpenCLaw Canvas가 http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/baegchang-u/.openclaw/canvas)로 호스트가-mounted되었습니다.\n*   22:24:16: OpenCLaw Canvas가 http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/baegchang-u/.openclaw/canvas)로 호스트가-mounted되었습니다.\n*   22:25:41: OpenCLaw Canvas가 http://127.0.0.1:18789/__openclaw__/canvas/ (root /Users/baegchang-u/.openclaw/canvas)로 호스트가-mounted되었습니다.\n\n---\n*자동 생성 by OpenClaw AI 비서*"
+  },
+  {
     "id": 66,
     "title": "2026-05-07 일일 작업 보고",
     "summary": "2026-05-07 AI 비서 일일 작업 내역 자동 정리",

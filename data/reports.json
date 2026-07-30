@@ -1,5 +1,19 @@
 [
   {
+    "id": 101,
+    "title": "크레아틴 모노하이드레이트 안전성 근거 검증",
+    "summary": "685개 임상시험·신장 메타분석·장기 안전성 및 개인 복용 체크 기준",
+    "category": "결과보고",
+    "date": "2026-07-31",
+    "tags": [
+      "크레아틴",
+      "운동",
+      "안전성",
+      "메타분석"
+    ],
+    "content": "# 크레아틴 모노하이드레이트 안전성 근거 검증\n\n## 결론\n\n건강한 성인이 단일성분 크레아틴 모노하이드레이트를 하루 3~5g 복용하는 것은 현재 축적된 임상 근거상 대체로 안전하다. 다만 모든 사람에게 100% 무위험하다고 말할 수는 없으며, 기존 신장질환·단백뇨·조절되지 않는 고혈압·임신/수유·신독성 약물 복용자는 의료진 확인이 우선이다.\n\n## 핵심 근거\n\n- 2025년 685개 임상시험 분석: 크레아틴 12,839명과 위약 13,452명 비교. 전체 이상반응 빈도는 4.60% 대 4.21%로 유의한 차이가 없었다. 평균 투여량은 약 12.5g/일, 연구 기간은 최장 14년이었다.\n- 2026년 684개 무작위시험·12,800명 이상 분석: 용량 또는 기간이 증가할수록 임상적으로 의미 있는 부작용이 증가하는 일관된 패턴이 없었다.\n- 2025년 신장기능 체계적 문헌고찰·메타분석: 혈청 크레아티닌은 소폭 상승할 수 있으나 GFR의 유의한 저하는 없었다. 크레아틴 대사 때문에 크레아티닌 기반 eGFR이 실제보다 낮아 보일 수 있다.\n- 2025년 12주 무작위시험: 5g/일 복용 시 DHT와 모발 밀도·굵기 등에서 위약 대비 차이가 없었다.\n- 국제스포츠영양학회 입장문: 건강한 사람에서 단기·장기 복용이 잘 견뎌지며, 연구상 고용량도 안전하게 사용되었다고 평가한다.\n\n## 한계와 반대 근거\n\n- 모든 전 세계 논문을 전수 확인했다는 표현은 불가능하다. 출판되지 않은 연구, 데이터베이스 미등재 자료, 품질이 낮은 사례보고가 존재할 수 있다.\n- 건강한 성인의 자료가 가장 강하며, 기존 신장질환·임신/수유·일부 소아와 복합질환 환자의 장기 자료는 부족하다.\n- 685개 시험 분석은 매우 크지만 연구별 이상반응 보고 방식이 균일하지 않고, 일부 크레아틴 연구자는 업계와 이해관계가 있어 독립 자료와 함께 해석해야 한다.\n- 드문 급성신손상 사례보고가 있지만 갑상선질환, 탈수, 격한 운동, 병용 보충제 등 혼란변수가 있어 일반적인 3~5g 단독 복용의 인과관계를 입증하지 못한다.\n\n## 개인 적용 안전 절차\n\n1. 단일성분 `creatine monohydrate` 제품을 고른다.\n2. 로딩 없이 하루 3g부터 시작하고, 잘 견디면 3~5g 범위로 유지한다.\n3. 1회 고용량 대신 식사와 함께 복용하고 평소 수분 섭취를 유지한다.\n4. 불안하거나 위험요인이 있으면 시작 전 혈압, 혈청 크레아티닌/eGFR, 가능하면 cystatin C, 소변 단백/알부민을 확인한다.\n5. 8~12주 뒤 같은 검사를 반복한다. 검사 시 크레아틴 복용 사실을 알린다.\n6. 소변량 감소, 지속적인 부종, 심한 구토·설사, 원인 불명의 심한 근육통이나 갈색뇨가 있으면 중단하고 진료한다.\n\n## 주요 출처\n\n- Kreider et al. Safety of creatine supplementation: analysis of the prevalence of reported side effects in clinical trials and adverse event reports. JISSN. 2025. PMID 40198156. DOI 10.1080/15502783.2025.2488937\n- Effect of creatine supplementation on kidney function: a systematic review and meta-analysis. BMC Nephrology. 2025. PMID 41199218. DOI 10.1186/s12882-025-04558-6\n- Creatine Supplementation Dose and Duration Are Not Associated with Increased Side Effects. Sports. 2026. PMID 42043069. DOI 10.3390/sports14040137\n- Does creatine cause hair loss? A 12-week randomized controlled trial. JISSN. 2025. PMID 40265319. DOI 10.1080/15502783.2025.2495229\n- ISSN position stand: safety and efficacy of creatine supplementation. JISSN. 2017. PMID 28615996. DOI 10.1186/s12970-017-0173-z\n- Novel renal biomarkers show that creatine supplementation is safe. Toxicology Research. 2020. PMID 32670557. DOI 10.1093/toxres/tfaa028\n"
+  },
+  {
     "id": 100,
     "title": "2026-07-30 일일 작업 보고",
     "summary": "2026-07-30 AI 비서 일일 작업 내역 자동 정리",

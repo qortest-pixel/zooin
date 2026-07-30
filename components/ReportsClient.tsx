@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import AppHeader from "@/components/AppHeader";
 
 type Report = {
   id: number;
@@ -115,21 +116,13 @@ export default function ReportsClient({ reports }: { reports: Report[] }) {
 
   return (
     <div className="dashboard-shell">
-      <header className="topbar">
-        <Link href="/" className="brand" aria-label="zooin 홈">
-          <span className="brand-mark">z</span>
-          <span className="brand-name">zooin</span>
-        </Link>
-        <nav className="topnav" aria-label="주요 메뉴">
-          <Link className="topnav-link active" href="/">리포트</Link>
-          <Link className="topnav-link" href="/tasks">작업</Link>
-          <Link className="topnav-link hide-mobile" href="/crons">자동화</Link>
-        </nav>
+      <div className="home-header-wrap">
+        <AppHeader active="reports" />
         <button className="ask-button" onClick={() => setChatOpen(true)}>
           <MessageIcon />
           <span>AI에게 묻기</span>
         </button>
-      </header>
+      </div>
 
       <main className="dashboard-main">
         <section className="intro">

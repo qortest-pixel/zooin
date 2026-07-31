@@ -1,5 +1,19 @@
 [
   {
+    "id": 116,
+    "title": "THREAD RADAR 외부 연결 오류 디버깅",
+    "summary": "HTML 오류 응답 처리, 앱·Cloudflare 터널 LaunchAgent 상시 실행 및 자동복구 검증",
+    "category": "자동화",
+    "date": "2026-07-31",
+    "tags": [
+      "스레드",
+      "디버깅",
+      "LaunchAgent",
+      "Cloudflare"
+    ],
+    "content": "# THREAD RADAR 외부 연결 오류 디버깅\n\n작성일: 2026-07-31\n\n## 증상\n\n`Unexpected token '<', '<!DOCTYPE' is not valid JSON`\n\n## 원인\n\n임시 Cloudflare 터널 또는 앱 프로세스가 종료된 상태에서 API 요청을 보내 Cloudflare HTML 오류 페이지를 받았고, 프런트엔드가 이를 JSON으로 해석했다.\n\n## 수정\n\n- API 응답 Content-Type 검사 추가\n- HTML 응답이면 이해 가능한 연결 만료 안내 표시\n- 앱 서버를 macOS LaunchAgent로 등록\n- Cloudflare 터널을 별도 LaunchAgent로 등록\n- 앱·터널 `KeepAlive` 자동 재시작 설정\n- 표준 출력·오류 로그 파일 저장\n\n## 검증\n\n- 앱 프로세스 PID 59319 강제 종료\n- LaunchAgent가 PID 59358로 자동 재시작\n- 재시작 후 localhost HTTP 200\n- 기존 실행 중 터널을 통한 외부 주소 HTTP 200\n- 앱 API는 접근 키 인증 유지\n"
+  },
+  {
     "id": 115,
     "title": "THREAD RADAR 수집 진행률 UI",
     "summary": "수집 단계·퍼센트·수집 개수·경과시간을 실시간 표시하는 진행바 구현 및 외부접속 검증",

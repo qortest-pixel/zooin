@@ -1,5 +1,19 @@
 [
   {
+    "id": 114,
+    "title": "THREAD RADAR 외부 PC 접속 구성",
+    "summary": "내부망·인터넷 외부접속, 접근키 인증, Cloudflare 터널과 재실행 파일 구성",
+    "category": "자동화",
+    "date": "2026-07-31",
+    "tags": [
+      "스레드",
+      "외부접속",
+      "Cloudflare",
+      "보안"
+    ],
+    "content": "# THREAD RADAR 외부 PC 접속 구성\n\n작성일: 2026-07-31\n\n## 완료 사항\n\n- 서버 바인딩을 localhost에서 `0.0.0.0:4310`으로 변경\n- 동일 내부망 접속 주소 생성\n- Cloudflare Quick Tunnel을 통한 외부 인터넷 접속 구성\n- 24바이트 임의 접근 키 생성 및 브라우저 로컬 저장\n- API 요청에 `x-access-key` 인증 적용\n- 접근 키 없는 API 요청 401, 정상 키 요청 200 검증\n- 외부 터널 페이지 200, 외부 API 인증 200 검증\n- `외부접속.command` 더블클릭 재실행 파일 추가\n\nQuick Tunnel은 프로세스가 종료되면 URL이 바뀌는 임시 주소다. 고정 주소 운영에는 Cloudflare 계정과 소유 도메인을 연결한 Named Tunnel이 필요하다.\n"
+  },
+  {
     "id": 113,
     "title": "스레드 레퍼런스 기관총 독립 구현",
     "summary": "키워드 수집·반응지표·댓글 초안·게시물/DM 큐·Excel 입출력을 갖춘 Mac용 THREAD RADAR 구현 및 검증",

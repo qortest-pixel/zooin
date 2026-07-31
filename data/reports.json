@@ -1,5 +1,20 @@
 [
   {
+    "id": 113,
+    "title": "스레드 레퍼런스 기관총 독립 구현",
+    "summary": "키워드 수집·반응지표·댓글 초안·게시물/DM 큐·Excel 입출력을 갖춘 Mac용 THREAD RADAR 구현 및 검증",
+    "category": "자동화",
+    "date": "2026-07-31",
+    "tags": [
+      "스레드",
+      "레퍼런스",
+      "자동화",
+      "Playwright",
+      "Excel"
+    ],
+    "content": "# THREAD RADAR — 스레드 레퍼런스 기관총 구현\n\n작성일: 2026-07-31\n\n## 결과\n\n기존 기관총 스레드의 공개 기능과 제공된 엑셀 구조를 분석해 Mac·Windows 공용 로컬 웹앱으로 독립 구현했다. 저작권 보호된 VBA 코드는 복제하지 않았다.\n\n프로젝트 위치:\n\n`projects/thread-reference-gun`\n\n## 구현 기능\n\n1. 키워드 기반 Threads 공개 게시물 레퍼런스 수집\n2. 작성자·원문 URL·본문·조회·좋아요·댓글·리포스트 저장\n3. 요청 간 안전 지연과 최대 수집 개수 설정\n4. 선택 레퍼런스 댓글 초안 생성\n5. 게시물 본문·미디어·예약시간·첫 댓글 검토 큐\n6. 변수 치환형 DM 템플릿과 검토 목록\n7. 원본 바이너리 Excel의 `정보·덤프·해결방법·추출·게시물·디엠` 6개 시트 읽기\n8. `추출·게시물·디엠` 3개 시트 Excel 내보내기\n9. Mac 더블클릭 실행 파일\n10. 로컬 JSON 저장과 전용 Chrome 로그인 프로필\n\n## 안전 설계\n\n- 댓글·게시물·DM 자동 전송은 하지 않고 검토 큐까지만 생성\n- 공개 게시물 레퍼런스 수집에 집중\n- 최소 1.2초 요청 지연\n- 사용자 데이터와 로그인 세션은 Mac 내부 저장\n- 원본 파일에 포함된 보호·실행 코드를 재사용하지 않음\n- 취약한 JavaScript Excel 파서를 제거하고 격리된 Python 변환기로 교체\n\n## 검증\n\n- Node 정적 구문 검사 통과\n- npm 보안 감사: 취약점 0개\n- 참고 Excel 6개 시트 읽기 성공\n- 내보낸 파일: Microsoft Excel 2007+ 형식\n- 내보낸 시트: 추출·게시물·디엠\n- 수식 오류: 0개\n- 대시보드·내비게이션·API 접근성 스냅샷 확인\n- 실제 Threads 검색에서 공개 게시물 URL 수집 확인\n- 로그인 상태가 아니면 Chrome 로그인 완료를 최대 2분 기다린 후 검색 재개\n\n## 실행\n\n`projects/thread-reference-gun/스레드기관총.command` 더블클릭\n\n또는:\n\n```bash\ncd projects/thread-reference-gun\nnpm start\n```\n\n접속 주소: `http://localhost:4310`\n\n## 다음 고도화\n\n- OpenAI·Claude·Gemini API를 통한 댓글·콘텐츠 초안 생성\n- 반응률 계산과 훅·본문·CTA 자동 분해\n- 수집 결과 중복 제거와 계정 제외 목록\n- 스케줄 캘린더\n- 승인된 게시물만 Playwright로 반자동 발행\n"
+  },
+  {
     "id": 112,
     "title": "비식품 발효 제품 16개 카테고리·25개 SKU 확장",
     "summary": "비누·샴푸를 넘어 치약·세제·탈취제·음식물 발효촉진제·퇴비·원액 키트까지 실제 판매 링크 검증",

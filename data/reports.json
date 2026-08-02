@@ -1,5 +1,19 @@
 [
   {
+    "id": 126,
+    "title": "Instagram Reels Radar 외부 원격 접속 구성",
+    "summary": "접근키 인증과 상시 Cloudflare 터널을 적용해 원격 PC에서 안전하게 접속할 수 있도록 구성했습니다.",
+    "category": "결과보고",
+    "date": "2026-08-02",
+    "tags": [
+      "인스타그램",
+      "릴스",
+      "원격접속",
+      "Cloudflare"
+    ],
+    "content": "# Instagram Reels Radar 외부 원격 접속 구성\n\n## 완료 내용\n\n- 릴스 레이더 API에 별도 접근키 인증 적용\n- URL의 `?key=` 값을 브라우저에 저장해 이후 API 요청에 자동 적용\n- Cloudflare Quick Tunnel을 별도 launchd 서비스로 등록해 상시 실행\n- 기존 Threads Radar 앱·터널과 포트 및 서비스 완전 분리\n- 외부 접속 수동 실행 스크립트와 README 안내 추가\n- 대표님의 원격 PC 사용 환경을 사용자 프로필과 일일 메모리에 기본 원칙으로 기록\n\n## 검증\n\n- 외부 공개 페이지 HTTP 200\n- 인증 없는 API 요청 HTTP 401\n- 올바른 접근키 API 요청 HTTP 200\n- 자동 테스트 6/6 및 문법 검사 통과\n- 기존 데이터 보존\n\n## 운영 참고\n\n현재 링크는 Cloudflare Quick Tunnel 주소이므로 터널이 새로 만들어질 때 주소가 바뀔 수 있다. 장기 고정 도메인이 필요하면 Cloudflare 계정 기반 Named Tunnel로 전환한다.\n\n"
+  },
+  {
     "id": 125,
     "title": "Instagram Reels Radar MVP 구축",
     "summary": "릴스 다중 검색, 조회 화력, 전체 정렬, 실행별 보고서, 계정 분석을 갖춘 독립 사이트를 구축했습니다.",
